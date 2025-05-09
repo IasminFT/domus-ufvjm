@@ -35,20 +35,27 @@ export default function HomeScreen() {
         
         <View style={styles.header}>
           <Text style={styles.pageTitle}>MEU</Text>
-          <View style={styles.notificationIcon}>
+          <Pressable onPress={() => console.log('Notificações pressionadas')}>
+            <Image
+              source={require('@/assets/images/icons/sino.png')}
+              style={styles.notificationIcon}
+            />
             <View style={styles.notificationBadge} />
-          </View>
+          </Pressable>
         </View>
 
-        <View style={styles.searchBar}>
-          <Image
-            source={require('@/assets/images/icons/lupa.png')}
-            style={styles.searchIcon}
-          />
-          <TextInput
-            placeholder="Buscar..."
-            style={styles.searchInput}
-          />
+        <View style={styles.searchBarContainer}>
+          <View style={styles.searchBar}>
+            <Image
+              source={require('@/assets/images/icons/lupa.png')}
+              style={styles.searchIcon}
+            />
+            <TextInput
+              placeholder="Buscar..."
+              style={styles.searchInput}
+              placeholderTextColor="#888"
+            />
+          </View>
         </View>
 
         {/* Botão 1 */}
@@ -179,22 +186,21 @@ const styles = StyleSheet.create({
     height: 145,
   },
   pageTitle: {
-    fontSize: 20,
+    top: 9,
+    fontSize: 40,
     color: '#3355ce',
     fontFamily: 'BebasNeue-Regular',
   },
   notificationIcon: {
-    width: 24,
-    height: 24,
-    backgroundColor: '#333',
-    borderRadius: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: 35,
+    height: 35,
+    top: 9,
+    tintColor: '#3355ce',
   },
   notificationBadge: {
     position: 'absolute',
-    top: -2,
-    right: -2,
+    top: 12,
+    right: 3,
     width: 10,
     height: 10,
     backgroundColor: '#ff3b30',
@@ -202,28 +208,30 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fff',
   },
-  searchBar: {
-    marginTop: 20,
+  searchBarContainer: {
+    marginTop: 8,
     marginBottom: 20,
-    position: 'relative',
   },
-  searchInput: {
-    backgroundColor: '#f5f5f5',
-    borderRadius: 20,
-    paddingLeft: 40,
-    paddingVertical: 10,
-    fontSize: 14,
-    borderWidth: 1,
-    borderColor: '#ddd',
-    fontFamily: 'Afacad-Regular',
+  searchBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#ddd',
+    borderRadius: 11,
+    paddingHorizontal: 15,
+    height: 50,
   },
   searchIcon: {
-    position: 'absolute',
-    left: 10,
-    top: 10,
     width: 20,
     height: 20,
     tintColor: '#888',
+    marginRight: 10,
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: 14,
+    fontFamily: 'Afacad-Regular',
+    paddingVertical: 0,
+    color: '#000',
   },
   featureTitle: {
     color: 'white',
