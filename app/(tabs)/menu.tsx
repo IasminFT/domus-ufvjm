@@ -1,72 +1,165 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { useNavigation } from 'expo-router';
+import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
+import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function MenuScreen() {
-  const navigation = useNavigation();
+// 1. Definindo os tipos de rotas válidas
+type AdminRoutes =
+  | '/(tabs)/(admin)/manutencao'
+  | '/(tabs)/(admin)/alertas'
+  | '/(tabs)/(admin)/documentos'
+  | '/(tabs)/(admin)/configuracoes'
+  | '/(tabs)/(admin)/usuarios'; 
 
-  const menuItems = [
-    { title: 'Notificações', icon: 'notifications', screen: 'notificacoes' },
-    { title: 'Favoritos', icon: 'heart', screen: 'favoritos' },
-    { title: 'Histórico', icon: 'time', screen: 'historico' },
-    { title: 'Categorias', icon: 'apps', screen: 'categorias' },
-    { title: 'Ajuda', icon: 'help-circle', screen: 'ajuda' },
+type PublicRoutes =
+  | '/(tabs)/comprovante'
+  | '/(tabs)/horario-onibus'
+  | '/(tabs)/notificacoes';
+
+type ValidRoutes = AdminRoutes | PublicRoutes;
+
+// 2. Tipo para os itens do menu
+interface MenuItem {
+  title: string;
+  icon: React.ComponentProps<typeof Ionicons>['name'];
+  route: ValidRoutes;
+  isAdmin?: boolean;
+}
+
+export default function MenuScreen() {
+  // 3. Lista de itens do menu com rotas tipadas
+  const menuItems: MenuItem[] = [
+    {
+      title: 'Manutenção',
+      icon: 'build',
+      route: '/(tabs)/(admin)/manutencao',
+      isAdmin: true
+    },
+    {
+      title: 'Comprovante de Residência',
+      icon: 'document-text',
+      route: '/(tabs)/comprovante'
+    },
+    {
+      title: 'Controle de Alertas',
+      icon: 'alert-circle',
+      route: '/(tabs)/(admin)/alertas',
+      isAdmin: true
+    },
+    {
+      title: 'Controle de Usuários',
+      icon: 'people',
+      route: '/(tabs)/(admin)/usuarios', // Item adicionado
+      isAdmin: true
+    },
+    {
+      title: 'Horário do Ônibus',
+      icon: 'bus',
+      route: '/(tabs)/horario-onibus'
+    },
+    {
+      title: 'Publicar Documentos',
+      icon: 'folder-open',
+      route: '/(tabs)/(admin)/documentos',
+      isAdmin: true
+    },
+    {
+      title: 'Notificações',
+      icon: 'notifications',
+      route: '/(tabs)/notificacoes'
+    },
   ];
 
+  // 4. Simulação de autenticação (substitua pelo seu contexto real)
+  const isAdmin = true; // Ou use o hook de autenticação
+
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Menu Principal</Text>
-      
-      {menuItems.map((item, index) => (
-        <TouchableOpacity 
-          key={index}
-          style={styles.menuItem}
-          onPress={() => navigation.navigate(item.screen as never)}
-        >
-          <View style={styles.iconContainer}>
-            <Ionicons name={item.icon as any} size={24} color="#4F46E5" />
-          </View>
-          <Text style={styles.menuText}>{item.title}</Text>
-          <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />
-        </TouchableOpacity>
-      ))}
+    <ScrollView
+      style={styles.scrollView}
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}
+    >
+      <View style={styles.header}>
+        <Text style={styles.pageTitle}>MENU</Text>
+      </View>
+
+      <View style={styles.menuList}>
+        {menuItems.map((item) => {
+          // 5. Oculta itens administrativos se não for admin
+          if (item.isAdmin && !isAdmin) return null;
+
+          return (
+            <Link href={item.route} key={item.route} asChild>
+              <Pressable style={styles.menuItem}>
+                <View style={styles.iconContainer}>
+                  <Ionicons
+                    name={item.icon}
+                    size={24}
+                    color="#3355ce"
+                  />
+                </View>
+                <Text style={styles.menuText}>{item.title}</Text>
+                <Ionicons
+                  name="chevron-forward"
+                  size={20}
+                  color="#888"
+                />
+              </Pressable>
+            </Link>
+          );
+        })}
+      </View>
     </ScrollView>
   );
 }
 
+// 6. Estilos
 const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-    backgroundColor: '#F9FAFB',
+  scrollView: {
+    flex: 1,
+    backgroundColor: '#f0f0f0',
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 24,
-    color: '#111827',
+  container: {
+    padding: 20,
+    backgroundColor: '#f0f0f0',
+    paddingTop: 50,
+  },
+  header: {
+    marginBottom: 30,
+  },
+  pageTitle: {
+    fontSize: 40,
+    color: '#3355ce',
+    fontFamily: 'BebasNeue-Regular',
+  },
+  menuList: {
+    gap: 12,
   },
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
-    padding: 16,
     borderRadius: 12,
-    marginBottom: 12,
+    padding: 16,
+    paddingVertical: 18,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
+    shadowRadius: 4,
+    elevation: 3,
   },
   iconContainer: {
     backgroundColor: '#EEF2FF',
-    padding: 8,
-    borderRadius: 10,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
     marginRight: 16,
   },
   menuText: {
     flex: 1,
     fontSize: 16,
     color: '#374151',
+    fontFamily: 'Afacad-Regular',
   },
 });
