@@ -3,8 +3,8 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default function ProfileScreen() {
   const user = {
-    name: 'João Silva',
-    email: 'joao@exemplo.com',
+    name: 'Daniel Rodrigues Pereira',
+    email: 'daniel.pereira@ufvjm.edu.br',
     phone: '(11) 98765-4321',
     joinDate: 'Membro desde Jan 2023',
   };
