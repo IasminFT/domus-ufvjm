@@ -22,7 +22,7 @@ export default function MenuScreen() {
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.header}>
-        <Text style={styles.pageTitle}>MENU</Text>
+        <Text style={styles.pageTitle}>MENU PSICÓLOGO</Text>
       </View>
 
       <View style={styles.menuList}>
