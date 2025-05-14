@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 // Definindo o tipo para os itens do menu
@@ -8,6 +9,8 @@ interface MenuItem {
 }
 
 export default function MenuScreen() {
+  const router = useRouter();
+
   // Lista de itens do menu com ícones tipados corretamente
   const menuItems: MenuItem[] = [
     { title: 'Consultar Agendamentos', icon: 'flower-outline' },

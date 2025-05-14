@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 // Definindo o tipo para os itens do menu
@@ -8,6 +9,8 @@ interface MenuItem {
 }
 
 export default function MenuScreen() {
+  const router = useRouter();
+
   // Lista de itens do menu com ícones tipados corretamente
   const menuItems: MenuItem[] = [
     { title: 'Manutenção', icon: 'build' },
@@ -32,7 +35,11 @@ export default function MenuScreen() {
           <Pressable
             key={index}
             style={styles.menuItem}
-            onPress={() => console.log('Item pressionado:', item.title)}
+            onPress={() => {
+            if (item.title === 'Manutenção') {
+              router.push('./solicitar-manutencao/index');
+            }
+          }}
           >
             <View style={styles.iconContainer}>
               <Ionicons name={item.icon} size={24} color="#3355ce" />
