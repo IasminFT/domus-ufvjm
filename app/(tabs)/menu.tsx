@@ -1,5 +1,5 @@
+import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 // Definindo o tipo para os itens do menu
 interface MenuItem {
@@ -10,8 +10,8 @@ interface MenuItem {
 export default function MenuScreen() {
   // Lista de itens do menu com ícones tipados corretamente
   const menuItems: MenuItem[] = [
-    { title: 'Gestão de Manutenção', icon: 'build' },
-    { title: 'Enviar Comprovante de Residência', icon: 'document-text' },
+    { title: 'Manutenção', icon: 'build' },
+    { title: 'Comprovante de Residência', icon: 'document-text' },
     { title: 'Controle de Alertas', icon: 'alert-circle' },
     { title: 'Controle de Usuários', icon: 'people' },
     { title: 'Horário do Ônibus', icon: 'bus' },
