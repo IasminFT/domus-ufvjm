@@ -1,76 +1,23 @@
 import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
-import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
-// 1. Definindo os tipos de rotas válidas
-type AdminRoutes =
-  | '/(tabs)/(admin)/manutencao'
-  | '/(tabs)/(admin)/alertas'
-  | '/(tabs)/(admin)/documentos'
-  | '/(tabs)/(admin)/configuracoes'
-  | '/(tabs)/(admin)/usuarios'; 
-
-type PublicRoutes =
-  | '/(tabs)/comprovante'
-  | '/(tabs)/horario-onibus'
-  | '/(tabs)/notificacoes';
-
-type ValidRoutes = AdminRoutes | PublicRoutes;
-
-// 2. Tipo para os itens do menu
+// Definindo o tipo para os itens do menu
 interface MenuItem {
   title: string;
-  icon: React.ComponentProps<typeof Ionicons>['name'];
-  route: ValidRoutes;
-  isAdmin?: boolean;
+  icon: React.ComponentProps<typeof Ionicons>['name']; // Isso garante que só ícones válidos sejam usados
 }
 
 export default function MenuScreen() {
-  // 3. Lista de itens do menu com rotas tipadas
+  // Lista de itens do menu com ícones tipados corretamente
   const menuItems: MenuItem[] = [
-    {
-      title: 'Manutenção',
-      icon: 'build',
-      route: '/(tabs)/(admin)/manutencao',
-      isAdmin: true
-    },
-    {
-      title: 'Comprovante de Residência',
-      icon: 'document-text',
-      route: '/(tabs)/comprovante'
-    },
-    {
-      title: 'Controle de Alertas',
-      icon: 'alert-circle',
-      route: '/(tabs)/(admin)/alertas',
-      isAdmin: true
-    },
-    {
-      title: 'Controle de Usuários',
-      icon: 'people',
-      route: '/(tabs)/(admin)/usuarios', // Item adicionado
-      isAdmin: true
-    },
-    {
-      title: 'Horário do Ônibus',
-      icon: 'bus',
-      route: '/(tabs)/horario-onibus'
-    },
-    {
-      title: 'Publicar Documentos',
-      icon: 'folder-open',
-      route: '/(tabs)/(admin)/documentos',
-      isAdmin: true
-    },
-    {
-      title: 'Notificações',
-      icon: 'notifications',
-      route: '/(tabs)/notificacoes'
-    },
+    { title: 'Manutenção', icon: 'build' },
+    { title: 'Comprovante de Residência', icon: 'document-text' },
+    { title: 'Controle de Alertas', icon: 'alert-circle' },
+    { title: 'Controle de Usuários', icon: 'people' },
+    { title: 'Horário do Ônibus', icon: 'bus' },
+    { title: 'Publicar Documentos', icon: 'folder-open' },
+    { title: 'Notificações', icon: 'notifications' },
   ];
-
-  // 4. Simulação de autenticação (substitua pelo seu contexto real)
-  const isAdmin = true; // Ou use o hook de autenticação
 
   return (
     <ScrollView
@@ -83,36 +30,25 @@ export default function MenuScreen() {
       </View>
 
       <View style={styles.menuList}>
-        {menuItems.map((item) => {
-          // 5. Oculta itens administrativos se não for admin
-          if (item.isAdmin && !isAdmin) return null;
-
-          return (
-            <Link href={item.route} key={item.route} asChild>
-              <Pressable style={styles.menuItem}>
-                <View style={styles.iconContainer}>
-                  <Ionicons
-                    name={item.icon}
-                    size={24}
-                    color="#3355ce"
-                  />
-                </View>
-                <Text style={styles.menuText}>{item.title}</Text>
-                <Ionicons
-                  name="chevron-forward"
-                  size={20}
-                  color="#888"
-                />
-              </Pressable>
-            </Link>
-          );
-        })}
+        {menuItems.map((item, index) => (
+          <Pressable
+            key={index}
+            style={styles.menuItem}
+            onPress={() => console.log('Item pressionado:', item.title)}
+          >
+            <View style={styles.iconContainer}>
+              <Ionicons name={item.icon} size={24} color="#3355ce" />
+            </View>
+            <Text style={styles.menuText}>{item.title}</Text>
+            <Ionicons name="chevron-forward" size={20} color="#888" />
+          </Pressable>
+        ))}
       </View>
     </ScrollView>
   );
 }
 
-// 6. Estilos
+// Estilos (mantidos os mesmos)
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
