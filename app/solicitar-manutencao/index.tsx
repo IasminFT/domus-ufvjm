@@ -54,6 +54,12 @@ export default function SolicitarManutencao() {
           </Pressable>
         ))}
       </View>
+
+      <Pressable style={styles.historyButton} onPress={() => router.push('/solicitar-manutencao/historico')}>
+        <Ionicons name="time" size={20} color="#888" style={{ marginRight: 10 }} />
+        <Text style={styles.historyText}>Histórico de Manutenções</Text>
+      </Pressable>
+
     </ScrollView>
   );
 }
@@ -67,6 +73,7 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#fFF',
     paddingTop: 50,
+    paddingBottom: 40,
   },
   pageTitle: {
     fontSize: 40,
@@ -118,4 +125,19 @@ const styles = StyleSheet.create({
     color: '#374151',
     fontFamily: 'Afacad-Regular',
   },
+    historyButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 12,
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    justifyContent: 'center',
+    marginTop: 30,
+  },
+  historyText: {
+    color: '#888',
+    fontSize: 16,
+    fontFamily: 'Afacad-Regular',
+  },
+
 });
