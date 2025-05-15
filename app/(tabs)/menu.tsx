@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
+import { useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import React from 'react';
 import { Platform, Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
@@ -10,6 +11,8 @@ interface MenuItem {
   title: string;
   icon: React.ComponentProps<typeof Ionicons>['name'];
 }
+
+const router = useRouter();
 
 export default function MenuScreen() {
   const [fontsLoaded, fontError] = useFonts({
@@ -59,7 +62,13 @@ export default function MenuScreen() {
                 styles.menuItem,
                 pressed && styles.menuItemPressed
               ]}
-              onPress={() => console.log('Item pressionado:', item.title)}
+              onPress={() => {
+                if (item.title === 'Gestão de Manutenção') {
+                  router.push('/solicitar-manutencao');
+                } else {
+                  console.log('Item pressionado:', item.title);
+                }
+              }}
             >
               <View style={styles.iconContainer}>
                 <Ionicons name={item.icon} size={20} color="#3355ce" />
