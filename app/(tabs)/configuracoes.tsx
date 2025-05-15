@@ -1,15 +1,53 @@
-import { View, Text, StyleSheet, ScrollView, Switch, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Switch, Pressable, StatusBar, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
+import { Link } from 'expo-router';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import React from 'react';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function SettingsScreen() {
+  const [fontsLoaded] = useFonts({
+    'Afacad-Regular': require('@/assets/fonts/Afacad-VariableFont_wght.ttf'),
+    'BebasNeue-Regular': require('@/assets/fonts/BebasNeue-Regular.ttf'),
+  });
+
+  const onLayoutRootView = React.useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const [darkModeEnabled, setDarkModeEnabled] = useState(false);
   const [biometricEnabled, setBiometricEnabled] = useState(true);
 
+  if (!fontsLoaded) {
+    return null;
+  }
+
   const settingsGroups = [
     {
-      title: 'Preferências',
+      title: 'INFORMAÇÕES DO SISTEMA',
+      items: [
+        {
+          icon: 'phone-portrait',
+          label: 'Versão do Aplicativo',
+          action: () => {},
+          rightComponent: <Text style={styles.itemValue}>1.0.0</Text>,
+        },
+        {
+          icon: 'hardware-chip',
+          label: 'Status do Servidor',
+          action: () => {},
+          rightComponent: <Text style={[styles.itemValue, {color: '#10B981'}]}>Online</Text>,
+        },
+      ],
+    },
+    {
+      title: 'PREFERÊNCIAS DO USUÁRIO',
       items: [
         {
           icon: 'notifications',
@@ -20,7 +58,7 @@ export default function SettingsScreen() {
               value={notificationsEnabled}
               onValueChange={setNotificationsEnabled}
               thumbColor="#FFFFFF"
-              trackColor={{ false: '#9CA3AF', true: '#4F46E5' }}
+              trackColor={{ false: '#9CA3AF', true: '#3355ce' }}
             />
           ),
         },
@@ -33,111 +71,184 @@ export default function SettingsScreen() {
               value={darkModeEnabled}
               onValueChange={setDarkModeEnabled}
               thumbColor="#FFFFFF"
-              trackColor={{ false: '#9CA3AF', true: '#4F46E5' }}
+              trackColor={{ false: '#9CA3AF', true: '#3355ce' }}
             />
           ),
         },
       ],
     },
     {
-      title: 'Segurança',
-      items: [
-        {
-          icon: 'finger-print',
-          label: 'Biometria',
-          action: () => setBiometricEnabled(!biometricEnabled),
-          rightComponent: (
-            <Switch
-              value={biometricEnabled}
-              onValueChange={setBiometricEnabled}
-              thumbColor="#FFFFFF"
-              trackColor={{ false: '#9CA3AF', true: '#4F46E5' }}
-            />
-          ),
-        },
+      title: 'GERENCIAMENTO DE CONTA',
+      items: [  
         {
           icon: 'lock-closed',
           label: 'Alterar Senha',
           action: () => {},
-          rightComponent: <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />,
+          rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
+        },
+        {
+          icon: 'log-out',
+          label: 'Sair da Conta',
+          action: () => {},
+          rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
         },
       ],
     },
     {
-      title: 'Sobre',
+      title: 'POLÍTICAS E DOCUMENTOS',
       items: [
         {
-          icon: 'information-circle',
+          icon: 'document-text',
           label: 'Termos de Uso',
           action: () => {},
-          rightComponent: <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />,
+          rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
         },
         {
-          icon: 'document-text',
+          icon: 'shield-checkmark',
           label: 'Política de Privacidade',
           action: () => {},
-          rightComponent: <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />,
+          rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
+        },
+      ],
+    },
+    {
+      title: 'AJUDA E SUPORTE',
+      items: [
+        {
+          icon: 'help-circle',
+          label: 'Central de Ajuda',
+          action: () => {},
+          rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
         },
         {
-          icon: 'star',
-          label: 'Avalie o App',
+          icon: 'chatbubbles',
+          label: 'Fale Conosco',
           action: () => {},
-          rightComponent: <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />,
+          rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
+        },
+      ],
+    },
+    {
+      title: 'SOBRE OS DESENVOLVEDORES',
+      items: [
+        {
+          icon: 'people',
+          label: 'Equipe de Desenvolvimento',
+          action: () => {},
+          rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
+        },
+        {
+          icon: 'code',
+          label: 'Tecnologias Utilizadas',
+          action: () => {},
+          rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
+        },
+      ],
+    },
+    {
+      title: 'CRÉDITOS E AGRADECIMENTOS',
+      items: [
+        {
+          icon: 'heart',
+          label: 'Apoiadores',
+          action: () => {},
+          rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
+        },
+        {
+          icon: 'ribbon',
+          label: 'Licenças',
+          action: () => {},
+          rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
         },
       ],
     },
   ];
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {settingsGroups.map((group, groupIndex) => (
-        <View key={groupIndex} style={styles.settingsGroup}>
-          <Text style={styles.groupTitle}>{group.title}</Text>
-          <View style={styles.groupContainer}>
-            {group.items.map((item, itemIndex) => (
-              <TouchableOpacity
-                key={itemIndex}
-                style={styles.settingItem}
-                onPress={item.action}
-              >
-                <View style={styles.itemContent}>
-                  <Ionicons name={item.icon as any} size={22} color="#4F46E5" />
-                  <Text style={styles.itemText}>{item.label}</Text>
-                </View>
-                {item.rightComponent}
-              </TouchableOpacity>
-            ))}
-          </View>
+    <ScrollView 
+      style={styles.scrollView}
+      contentContainerStyle={styles.scrollViewContent}
+      showsVerticalScrollIndicator={false}
+    >
+      <View style={styles.container} onLayout={onLayoutRootView}>
+        <StatusBar barStyle="dark-content" />
+        
+        <View style={styles.header}>
+          <Text style={styles.pageTitle}>CONFIGURAÇÕES</Text>
         </View>
-      ))}
+
+        {settingsGroups.map((group, groupIndex) => (
+          <View key={groupIndex} style={styles.settingsGroup}>
+            <Text style={styles.groupTitle}>{group.title}</Text>
+            <View style={styles.groupContainer}>
+              {group.items.map((item, itemIndex) => (
+                <Pressable
+                  key={itemIndex}
+                  style={({pressed}) => [
+                    styles.settingItem,
+                    pressed && styles.itemPressed
+                  ]}
+                  onPress={item.action}
+                >
+                  <View style={styles.itemContent}>
+                    <View style={styles.iconContainer}>
+                      <Ionicons name={item.icon as any} size={20} color="#3355ce" />
+                    </View>
+                    <Text style={styles.itemText}>{item.label}</Text>
+                  </View>
+                  {item.rightComponent}
+                </Pressable>
+              ))}
+            </View>
+          </View>
+        ))}
+      </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollView: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+  },
   container: {
-    padding: 16,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: 'white',
+    padding: 20,
+    flex: 1,
+    justifyContent: 'flex-start',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 40,
+  },
+  header: {
+    marginBottom: 30,
+  },
+  pageTitle: {
+    fontSize: 40,
+    color: '#3355ce',
+    fontFamily: 'BebasNeue-Regular',
+    top: 32
   },
   settingsGroup: {
-    marginBottom: 24,
+    marginBottom: 20,
+    top: 32
   },
   groupTitle: {
     fontSize: 14,
-    fontWeight: '500',
     color: '#6B7280',
     marginBottom: 8,
-    paddingLeft: 8,
+    fontFamily: 'Afacad-Regular',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
   },
   groupContainer: {
-    backgroundColor: 'white',
+    backgroundColor: '#f5f5f5',
     borderRadius: 12,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
   },
   settingItem: {
     flexDirection: 'row',
@@ -145,15 +256,36 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#F3F4F6',
+    borderBottomColor: '#e0e0e0',
+    backgroundColor: '#f5f5f5',
+  },
+  itemPressed: {
+    backgroundColor: '#e8e8e8',
   },
   itemContent: {
     flexDirection: 'row',
     alignItems: 'center',
+    flex: 1,
+  },
+  iconContainer: {
+    backgroundColor: '#fff',
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 16,
   },
   itemText: {
-    marginLeft: 16,
     fontSize: 16,
     color: '#374151',
+    fontFamily: 'Afacad-Regular',
+    flex: 1,
+  },
+  itemValue: {
+    fontSize: 14,
+    color: '#6B7280',
+    fontFamily: 'Afacad-Regular',
+    marginRight: 8,
   },
 });

@@ -1,54 +1,154 @@
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, Pressable, StatusBar, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { Link } from 'expo-router';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import React from 'react';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function ProfileScreen() {
+  const [fontsLoaded] = useFonts({
+    'Afacad-Regular': require('@/assets/fonts/Afacad-VariableFont_wght.ttf'),
+    'BebasNeue-Regular': require('@/assets/fonts/BebasNeue-Regular.ttf'),
+  });
+
+  const onLayoutRootView = React.useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   const user = {
     name: 'Daniel Rodrigues Pereira',
     email: 'daniel.pereira@ufvjm.edu.br',
-    phone: '(11) 98765-4321',
-    joinDate: 'Membro desde Jan 2023',
+    matricula: '2023123456',
+    anoEntrada: '2023',
+    previsaoSaida: '2027',
+    bloco: '2',
+    apartamento: '305',
+    curso: 'Sistemas de Informação',
+    telefone: '(38) 99999-9999',
+    status: 'Ativo'
   };
 
-  const profileActions = [
-    { icon: 'person', label: 'Editar Perfil', action: () => {} },
-    { icon: 'lock-closed', label: 'Segurança', action: () => {} },
-    { icon: 'card', label: 'Pagamentos', action: () => {} },
-    { icon: 'log-out', label: 'Sair', action: () => {} },
+  const profileGroups = [
+    {
+      title: 'INFORMAÇÕES ACADÊMICAS',
+      items: [
+        {
+          icon: 'id-card',
+          label: 'Matrícula',
+          value: user.matricula,
+        },
+        {
+          icon: 'school',
+          label: 'Curso',
+          value: user.curso,
+        },
+        {
+          icon: 'calendar',
+          label: 'Ano de Entrada',
+          value: user.anoEntrada,
+        },
+        {
+          icon: 'exit',
+          label: 'Previsão de Saída',
+          value: user.previsaoSaida,
+        },
+      ],
+    },
+    {
+      title: 'INFORMAÇÕES RESIDENCIAIS',
+      items: [
+        {
+          icon: 'home',
+          label: 'Bloco',
+          value: user.bloco,
+        },
+        {
+          icon: 'business',
+          label: 'Apartamento',
+          value: user.apartamento,
+        },
+      ],
+    },
+    {
+      title: 'CONFIGURAÇÕES',
+      items: [
+        {
+          icon: 'person',
+          label: 'Editar Perfil',
+          action: () => {},
+          rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
+        },
+        {
+          icon: 'lock-closed',
+          label: 'Alterar Senha',
+          action: () => {},
+          rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
+        },
+      ],
+    },
   ];
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.profileHeader}>
-        <Image 
-          source={require('@/assets/images/icons/perfil.png')} 
-          style={styles.avatar}
-        />
-        <Text style={styles.userName}>{user.name}</Text>
-        <Text style={styles.userEmail}>{user.email}</Text>
-      </View>
-
-      <View style={styles.infoContainer}>
-        <View style={styles.infoItem}>
-          <Ionicons name="call" size={20} color="#4F46E5" />
-          <Text style={styles.infoText}>{user.phone}</Text>
+    <ScrollView 
+      style={styles.scrollView}
+      contentContainerStyle={styles.scrollViewContent}
+      showsVerticalScrollIndicator={false}
+    >
+      <View style={styles.container} onLayout={onLayoutRootView}>
+        <StatusBar barStyle="dark-content" />
+        
+        <View style={styles.header}>
+          <Text style={styles.pageTitle}>PERFIL</Text>
         </View>
-        <View style={styles.infoItem}>
-          <Ionicons name="calendar" size={20} color="#4F46E5" />
-          <Text style={styles.infoText}>{user.joinDate}</Text>
-        </View>
-      </View>
 
-      <View style={styles.actionsContainer}>
-        {profileActions.map((action, index) => (
-          <TouchableOpacity
-            key={index}
-            style={styles.actionButton}
-            onPress={action.action}
-          >
-            <Ionicons name={action.icon as any} size={22} color="#4F46E5" />
-            <Text style={styles.actionText}>{action.label}</Text>
-            <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />
-          </TouchableOpacity>
+        <View style={styles.profileHeader}>
+          <View style={styles.avatarContainer}>
+            <Image 
+              source={require('@/assets/images/icons/profile-count.png')} 
+              style={styles.avatar}
+            />
+            <View style={styles.statusIndicator} />
+          </View>
+          <Text style={styles.userName}>{user.name}</Text>
+          <Text style={styles.userEmail}>{user.email}</Text>
+          <Text style={styles.userStatus}>{user.status}</Text>
+        </View>
+
+        {profileGroups.map((group, groupIndex) => (
+          <View key={groupIndex} style={styles.settingsGroup}>
+            <Text style={styles.groupTitle}>{group.title}</Text>
+            <View style={styles.groupContainer}>
+              {group.items.map((item, itemIndex) => (
+                <Pressable
+                  key={itemIndex}
+                  style={({pressed}) => [
+                    styles.settingItem,
+                    pressed && styles.itemPressed
+                  ]}
+                  onPress={item.action || (() => {})}
+                >
+                  <View style={styles.itemContent}>
+                    <View style={styles.iconContainer}>
+                      <Ionicons name={item.icon as any} size={20} color="#3355ce" />
+                    </View>
+                    <View style={styles.textContainer}>
+                      <Text style={styles.itemText}>{item.label}</Text>
+                      {item.value && <Text style={styles.itemValue}>{item.value}</Text>}
+                    </View>
+                  </View>
+                  {item.rightComponent}
+                </Pressable>
+              ))}
+            </View>
+          </View>
         ))}
       </View>
     </ScrollView>
@@ -56,74 +156,140 @@ export default function ProfileScreen() {
 }
 
 const styles = StyleSheet.create({
+  scrollView: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+  },
   container: {
-    padding: 16,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: 'white',
+    padding: 20,
+    flex: 1,
+    justifyContent: 'flex-start',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 40,
+  },
+  header: {
+    marginBottom: 20,
+  },
+  pageTitle: {
+    fontSize: 40,
+    color: '#3355ce',
+    fontFamily: 'BebasNeue-Regular',
+    top: 32
   },
   profileHeader: {
     alignItems: 'center',
-    marginBottom: 24,
+    marginBottom: 30,
+    padding: 20,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+    top: 32
+  },
+  avatarContainer: {
+    position: 'relative',
+    marginBottom: 15,
   },
   avatar: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    marginBottom: 16,
+    width: 90,
+    height: 90,
+    borderRadius: 60,
     borderWidth: 3,
-    borderColor: '#E5E7EB',
+    borderColor: '#e0e0e0',
+  },
+  statusIndicator: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: '#10B981',
+    borderWidth: 2,
+    borderColor: 'white',
   },
   userName: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#111827',
-    marginBottom: 4,
+    fontSize: 24,
+    color: '#374151',
+    fontFamily: 'Afacad-Regular',
+    fontWeight: '600',
+    marginBottom: 5,
+    textAlign: 'center',
   },
   userEmail: {
     fontSize: 16,
     color: '#6B7280',
+    fontFamily: 'Afacad-Regular',
+    marginBottom: 5,
+    textAlign: 'center',
   },
-  infoContainer: {
-    backgroundColor: 'white',
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 24,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
+  userStatus: {
+    fontSize: 14,
+    color: '#10B981',
+    fontFamily: 'Afacad-Regular',
+    fontWeight: '600',
+    textAlign: 'center',
   },
-  infoItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 12,
+  settingsGroup: {
+    marginBottom: 20,
+    top: 32
   },
-  infoText: {
-    marginLeft: 12,
-    fontSize: 16,
-    color: '#374151',
+  groupTitle: {
+    fontSize: 14,
+    color: '#6B7280',
+    marginBottom: 8,
+    fontFamily: 'Afacad-Regular',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
   },
-  actionsContainer: {
-    backgroundColor: 'white',
+  groupContainer: {
+    backgroundColor: '#f5f5f5',
     borderRadius: 12,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
   },
-  actionButton: {
+  settingItem: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     padding: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#F3F4F6',
+    borderBottomColor: '#e0e0e0',
+    backgroundColor: '#f5f5f5',
   },
-  actionText: {
+  itemPressed: {
+    backgroundColor: '#e8e8e8',
+  },
+  itemContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
     flex: 1,
-    marginLeft: 16,
+  },
+  iconContainer: {
+    backgroundColor: '#fff',
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 16,
+  },
+  textContainer: {
+    flex: 1,
+  },
+  itemText: {
     fontSize: 16,
     color: '#374151',
+    fontFamily: 'Afacad-Regular',
+  },
+  itemValue: {
+    fontSize: 14,
+    color: '#6B7280',
+    fontFamily: 'Afacad-Regular',
+    marginTop: 2,
   },
 });
