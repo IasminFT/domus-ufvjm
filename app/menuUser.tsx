@@ -37,8 +37,12 @@ export default function MenuScreen() {
             style={styles.menuItem}
             onPress={() => {
             if (item.title === 'Manutenção') {
-              router.push('./solicitar-manutencao/index');
-            }
+              router.push('/solicitar-manutencao');
+            } else if (item.title === 'Agendar Computador') {
+              router.push('/reservar-pcs/index');
+            } else {
+                  console.log('Item pressionado:', item.title);
+                }
           }}
           >
             <View style={styles.iconContainer}>
@@ -57,11 +61,11 @@ export default function MenuScreen() {
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#fff',
   },
   container: {
     padding: 20,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#fff',
     paddingTop: 50,
   },
   header: {
@@ -78,7 +82,7 @@ const styles = StyleSheet.create({
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#f0f0f0',
     borderRadius: 12,
     padding: 16,
     paddingVertical: 18,
