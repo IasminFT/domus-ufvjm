@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center', 
   },
   input: {
-    backgroundColor: '#D9D9D9',
+    backgroundColor: '#f0f0f0',
     borderRadius: 10,
     padding: 12,
     borderWidth: 1,
