@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
    titleIcon: {
-marginBottom:5,
+    marginBottom:5,
   },
   subtitle: {
     fontSize: 20,
