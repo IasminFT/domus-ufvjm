@@ -1,4 +1,3 @@
-// app/solicitar-manutencao/index.tsx
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -39,6 +38,7 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 20,
+    backgroundColor: '#f0f0f0',
     paddingTop: 50,
   },
   pageTitle: {
