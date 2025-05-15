@@ -18,7 +18,24 @@ export default function SolicitarManutencao() {
       <Text style={styles.pageTitle}>SOLICITAR MANUTENÇÃO</Text>
       <View style={styles.menuList}>
         {manutencaoItems.map((item, index) => (
-          <Pressable key={index} style={styles.menuItem} onPress={() => console.log(item.title)}>
+          <Pressable key={index} style={styles.menuItem}
+            onPress={() => {
+              if (item.title === 'Manutenção Hidráulica') {
+                router.push('/solicitar-manutencao/formsManutencaoHidraulica');
+              } else if (item.title === 'Manutenção de Internet'){
+                router.push('/solicitar-manutencao/formsManutencaoInternet');
+              } else if (item.title === 'Manutenção Elétrica'){
+                router.push('/solicitar-manutencao/formsManutencaoEletrica');
+              } else if (item.title === 'Manutenção Estrutural'){
+                router.push('/solicitar-manutencao/formsManutencaoEstrutural');
+              } else if (item.title === 'Manutenção em PCs'){
+                router.push('/solicitar-manutencao/formsManutencaoPC');
+              }          
+              else {
+                console.log('Item pressionado:', item.title);
+              }
+            }} 
+            >
             <View style={styles.iconContainer}>
               <Ionicons name={item.icon as any} size={24} color="#3355ce" />
             </View>
@@ -42,7 +59,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
   },
   pageTitle: {
-    fontSize: 32,
+    fontSize: 40,
     color: '#3355ce',
     marginBottom: 20,
     fontFamily: 'BebasNeue-Regular',
