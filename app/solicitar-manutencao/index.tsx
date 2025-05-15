@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function SolicitarManutencao() {
   const router = useRouter();
@@ -15,7 +15,17 @@ export default function SolicitarManutencao() {
 
   return (
     <ScrollView style={styles.scrollView} contentContainerStyle={styles.container}>
-      <Text style={styles.pageTitle}>SOLICITAR MANUTENÇÃO</Text>
+      <Text style={styles.pageTitle}>MANUTENÇÃO</Text>
+
+      <View style={styles.searchContainer}>
+        <Ionicons name="search" size={20} color="#888" style={styles.searchIcon} />
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Pesquise alguma coisa..."
+          placeholderTextColor="#888"
+        />
+      </View>
+
       <View style={styles.menuList}>
         {manutencaoItems.map((item, index) => (
           <Pressable key={index} style={styles.menuItem}
@@ -51,11 +61,11 @@ export default function SolicitarManutencao() {
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#fFF',
   },
   container: {
     padding: 20,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#fFF',
     paddingTop: 50,
   },
   pageTitle: {
@@ -64,19 +74,37 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontFamily: 'BebasNeue-Regular',
   },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#f0f0f0',
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 16,
+    marginBottom: 20,
+  },
+  searchIcon: {
+    marginRight: 8,
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: 16,
+    color: '#333',
+    fontFamily: 'Afacad-Regular',
+  },
   menuList: {
     gap: 12,
   },
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#f0f0f0',
     borderRadius: 12,
     padding: 16,
     elevation: 2,
   },
   iconContainer: {
-    backgroundColor: '#EEF2FF',
+    backgroundColor: '#FFF',
     width: 40,
     height: 40,
     borderRadius: 20,
