@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   container: {
+
     backgroundColor: 'white',
     padding: 20,
     flex: 1,
@@ -144,6 +145,7 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: 30,
+    top: 32
   },
   pageTitle: {
     fontSize: 40,
@@ -159,6 +161,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderWidth: 1,
     borderColor: '#e0e0e0',
+    top: 32
   },
   searchBarPressed: {
     backgroundColor: '#e8e8e8',
@@ -171,6 +174,7 @@ const styles = StyleSheet.create({
   },
   documentList: {
     gap: 12,
+    top: 32
   },
   documentItem: {
     flexDirection: 'row',
@@ -185,7 +189,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#e8e8e8',
   },
   iconContainer: {
-    backgroundColor: '#e8f0fe',
+    backgroundColor: '#fff', /*'##e8f0fe*/ 
     width: 40,
     height: 40,
     borderRadius: 20,

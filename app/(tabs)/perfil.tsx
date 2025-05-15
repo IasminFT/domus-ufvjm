@@ -194,8 +194,8 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   avatar: {
-    width: 120,
-    height: 120,
+    width: 90,
+    height: 90,
     borderRadius: 60,
     borderWidth: 3,
     borderColor: '#e0e0e0',
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   iconContainer: {
-    backgroundColor: '#e8f0fe',
+    backgroundColor: '#fff',
     width: 36,
     height: 36,
     borderRadius: 18,

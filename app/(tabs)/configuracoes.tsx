@@ -229,9 +229,11 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: '#3355ce',
     fontFamily: 'BebasNeue-Regular',
+    top: 32
   },
   settingsGroup: {
     marginBottom: 20,
+    top: 32
   },
   groupTitle: {
     fontSize: 14,
@@ -266,7 +268,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   iconContainer: {
-    backgroundColor: '#e8f0fe',
+    backgroundColor: '#fff',
     width: 36,
     height: 36,
     borderRadius: 18,
