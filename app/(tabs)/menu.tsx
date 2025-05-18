@@ -1,9 +1,7 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable, StatusBar, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
 import { useRouter } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -12,6 +10,8 @@ interface MenuItem {
   icon: React.ComponentProps<typeof Ionicons>['name'];
   route: string;
 }
+
+const router = useRouter();
 
 export default function MenuScreen() {
   const router = useRouter();
@@ -66,7 +66,7 @@ export default function MenuScreen() {
                 styles.menuItem,
                 pressed && styles.menuItemPressed
               ]}
-              onPress={() => handlePress(item.route)}
+              onPress={() => console.log('Item pressionado:', item.title)}
             >
               <View style={styles.iconContainer}>
                 <Ionicons name={item.icon} size={20} color="#3355ce" />
