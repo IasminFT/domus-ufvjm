@@ -3,15 +3,18 @@ import { View, Text, StyleSheet, ScrollView, Pressable, StatusBar, Platform } fr
 import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import { useRouter } from 'expo-router';
 
 SplashScreen.preventAutoHideAsync();
 
 interface MenuItem {
   title: string;
   icon: React.ComponentProps<typeof Ionicons>['name'];
+  route: string;
 }
 
 export default function MenuScreen() {
+  const router = useRouter();
   const [fontsLoaded, fontError] = useFonts({
     'Afacad-Regular': require('@/assets/fonts/Afacad-VariableFont_wght.ttf'),
     'Afacad-Italic': require('@/assets/fonts/Afacad-Italic-VariableFont_wght.ttf'),
@@ -29,14 +32,18 @@ export default function MenuScreen() {
   }
 
   const menuItems: MenuItem[] = [
-    { title: 'Gestão de Manutenção', icon: 'build' },
-    { title: 'Enviar Comprovante de Residência', icon: 'document-text' },
-    { title: 'Controle de Alertas', icon: 'alert-circle' },
-    { title: 'Controle de Usuários', icon: 'people' },
-    { title: 'Horário do Ônibus', icon: 'bus' },
-    { title: 'Publicar Documentos', icon: 'folder-open' },
-    { title: 'Notificações', icon: 'notifications' },
+    { title: 'Gestão de Manutenção', icon: 'build', route: '/(tabs)/admin/manutencao' },
+    { title: 'Enviar Comprovante de Residência', icon: 'document-text', route: '/(tabs)/admin/comprovante' },
+    { title: 'Controle de Alertas', icon: 'alert-circle', route: '/(tabs)/admin/alertas' },
+    { title: 'Controle de Usuários', icon: 'people', route: '/(tabs)/admin/usuarios' },
+    { title: 'Horário do Ônibus', icon: 'bus', route: '/(tabs)/admin/onibus' },
+    { title: 'Publicar Documentos', icon: 'folder-open', route: '/(tabs)/admin/documentos' },
+    { title: 'Notificações', icon: 'notifications', route: '/(tabs)/admin/notificacoes' },
   ];
+
+  const handlePress = (route: string) => {
+    router.push(route);
+  };
 
   return (
     <ScrollView 
@@ -59,7 +66,7 @@ export default function MenuScreen() {
                 styles.menuItem,
                 pressed && styles.menuItemPressed
               ]}
-              onPress={() => console.log('Item pressionado:', item.title)}
+              onPress={() => handlePress(item.route)}
             >
               <View style={styles.iconContainer}>
                 <Ionicons name={item.icon} size={20} color="#3355ce" />
