@@ -35,7 +35,7 @@ export default function MenuScreen() {
             style={styles.menuItem}
             onPress={() => {
             if (item.title === 'Agendar Computador') {
-              router.push('/reservar-pcs/index');
+              router.push('/reservar-pcs');
             } else {
                   console.log('Item pressionado:', item.title);
                 }
