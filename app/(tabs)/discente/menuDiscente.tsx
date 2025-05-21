@@ -37,9 +37,9 @@ export default function MenuScreen() {
             style={styles.menuItem}
             onPress={() => {
             if (item.title === 'Manutenção') {
-              router.push('/solicitar-manutencao');
+              router.push('./solicitar-manutencao/index');
             } else if (item.title === 'Agendar Computador') {
-              router.push('/reservar-pcs/index');
+              router.push('./shared/reservar-pcs/index');
             } else {
                   console.log('Item pressionado:', item.title);
                 }

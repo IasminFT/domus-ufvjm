@@ -34,15 +34,15 @@ export default function ReservarPCs() {
           <Pressable key={index} style={styles.menuItem}
             onPress={() => {
               if (item.title === 'Pc - A1') {
-                router.push('/reservar-pcs/pc-a1');
+                router.push('./reservar-pcs/pc-a1');
               } else if (item.title === 'Pc - A2'){
-                router.push('/reservar-pcs/pc-a2');
+                router.push('./reservar-pcs/pc-a2');
               } else if (item.title === 'Pc - A3'){
-                router.push('/reservar-pcs/pc-a3');
+                router.push('./reservar-pcs/pc-a3');
               } else if (item.title === 'Pc - A4'){
-                router.push('/reservar-pcs/pc-a4');
+                router.push('./reservar-pcs/pc-a4');
               } else if (item.title === 'Pc - A5'){
-                router.push('/reservar-pcs/pc-a5');
+                router.push('./reservar-pcs/pc-a5');
               }          
               else {
                 console.log('Item pressionado:', item.title);

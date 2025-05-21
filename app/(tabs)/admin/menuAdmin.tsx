@@ -43,7 +43,7 @@ export default function MenuScreen() {
 
   const handlePress = (title: string) => {
     if (title === 'Gestão de Manutenção') {
-      router.push('/solicitar-manutencao');
+
     } else {
       console.log('Item pressionado:', title);
     }

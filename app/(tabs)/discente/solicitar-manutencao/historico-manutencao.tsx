@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   pageTitle: {
-    fontSize: 30,
+    fontSize: 40,
     color: '#3355ce',
     marginBottom: 30,
     fontFamily: 'BebasNeue-Regular',

@@ -31,15 +31,15 @@ export default function SolicitarManutencao() {
           <Pressable key={index} style={styles.menuItem}
             onPress={() => {
               if (item.title === 'Manutenção Hidráulica') {
-                router.push('/solicitar-manutencao/formsManutencaoHidraulica');
+                router.push('./formsManutencaoHidraulica');
               } else if (item.title === 'Manutenção de Internet'){
-                router.push('/solicitar-manutencao/formsManutencaoInternet');
+                router.push('./formsManutencaoInternet');
               } else if (item.title === 'Manutenção Elétrica'){
-                router.push('/solicitar-manutencao/formsManutencaoEletrica');
+                router.push('./formsManutencaoEletrica');
               } else if (item.title === 'Manutenção Estrutural'){
-                router.push('/solicitar-manutencao/formsManutencaoEstrutural');
+                router.push('./formsManutencaoEstrutural');
               } else if (item.title === 'Manutenção em PCs'){
-                router.push('/solicitar-manutencao/formsManutencaoPC');
+                router.push('./formsManutencaoPC');
               }          
               else {
                 console.log('Item pressionado:', item.title);
@@ -55,7 +55,7 @@ export default function SolicitarManutencao() {
         ))}
       </View>
 
-      <Pressable style={styles.historyButton} onPress={() => router.push('/solicitar-manutencao/historico')}>
+      <Pressable style={styles.historyButton} onPress={() => router.push('./historico-manutencao')}>
         <Ionicons name="time" size={20} color="#888" style={{ marginRight: 10 }} />
         <Text style={styles.historyText}>Histórico de Manutenções</Text>
       </Pressable>
