@@ -1,73 +1,51 @@
+import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { Image, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function RegisterScreen() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
+  const router = useRouter();
+
+  const [emailOrUser, setEmailOrUser] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [remember, setRemember] = useState(false);
 
   const handleRegister = () => {
-    // lógica para cadastro
-    console.log('Cadastrar:', { name, email, username, password, confirmPassword });
+    console.log({ emailOrUser, password, remember });
+    // Exemplo de redirecionamento:
+    // router.push('/(tabs)/index');
   };
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require('./assets/logo.png')} // ajuste o caminho da imagem do logo
-        style={styles.logo}
-      />
       <Text style={styles.title}>Domus</Text>
 
       <TextInput
         style={styles.input}
-        placeholder="Nome completo"
-        value={name}
-        onChangeText={setName}
+        placeholder="E-mail ou usuário"
+        value={emailOrUser}
+        onChangeText={setEmailOrUser}
+        autoCapitalize="none"
       />
-      <TextInput
-        style={styles.input}
-        placeholder="E-mail"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Usuário"
-        value={username}
-        onChangeText={setUsername}
-      />
+
       <TextInput
         style={styles.input}
         placeholder="Senha"
-        secureTextEntry
         value={password}
         onChangeText={setPassword}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Confirmar senha"
         secureTextEntry
-        value={confirmPassword}
-        onChangeText={setConfirmPassword}
       />
 
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
-        <Text style={styles.buttonText}>Cadastrar</Text>
+        <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
 
       <View style={styles.row}>
         <Switch value={remember} onValueChange={setRemember} />
         <Text style={styles.rememberText}>Lembrar minha escolha</Text>
+        <TouchableOpacity onPress={() => alert('Funcionalidade de ajuda ainda não implementada')}>
+          <Text style={styles.helpText}>Precisa de ajuda?</Text>
+        </TouchableOpacity>
       </View>
-
-      <TouchableOpacity>
-        <Text style={styles.helpText}>Precisa de ajuda?</Text>
-      </TouchableOpacity>
     </View>
   );
 }
@@ -75,50 +53,58 @@ export default function RegisterScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    padding: 20,
+    paddingHorizontal: 30,
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
   },
   logo: {
-    width: 80,
-    height: 80,
-    alignSelf: 'center',
+    width: 90,
+    height: 90,
     marginBottom: 10,
+    resizeMode: 'contain',
   },
   title: {
-    textAlign: 'center',
     fontSize: 20,
-    marginBottom: 20,
-    color: '#0D2B45',
+    fontWeight: '600',
+    marginBottom: 30,
+    color: '#003049',
   },
   input: {
-    backgroundColor: '#E4E4E4',
-    borderRadius: 5,
-    padding: 12,
-    marginBottom: 10,
+    width: '100%',
+    height: 45,
+    backgroundColor: '#e0e0e0',
+    borderRadius: 6,
+    paddingHorizontal: 10,
+    marginBottom: 12,
   },
   button: {
-    backgroundColor: '#2F4FE3',
-    borderRadius: 5,
-    padding: 15,
-    marginTop: 10,
+    width: '100%',
+    height: 45,
+    backgroundColor: '#3256e2',
+    borderRadius: 6,
+    justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 5,
+    marginBottom: 10,
   },
   buttonText: {
-    color: '#FFF',
+    color: '#fff',
     fontWeight: 'bold',
   },
   row: {
+    width: '100%',
+    marginTop: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 10,
+    justifyContent: 'space-between',
   },
   rememberText: {
-    marginLeft: 8,
+    marginLeft: 10,
+    fontSize: 12,
   },
   helpText: {
-    textAlign: 'right',
-    marginTop: 10,
-    color: '#000',
+    fontSize: 12,
+    color: '#007aff',
   },
 });
