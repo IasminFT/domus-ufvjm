@@ -1,23 +1,28 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 // Definindo o tipo para os itens do menu
 interface MenuItem {
   title: string;
-  icon: React.ComponentProps<typeof Ionicons>['name']; // Isso garante que só ícones válidos sejam usados
+  icon: React.ComponentProps<typeof Ionicons>['name'];
 }
 
-export default function MenuScreen() {
+export default function MenuPsico() {
   const router = useRouter();
 
-  // Lista de itens do menu com ícones tipados corretamente
   const menuItems: MenuItem[] = [
-    { title: 'Manutenção', icon: 'build' },
-    { title: 'Comprovante de Residência', icon: 'document-text' },
-    { title: 'Horário do Ônibus', icon: 'bus' },
-    { title: 'Agendar Computador', icon: 'desktop-outline' },
-    { title: 'Solicitar Psicólogo', icon: 'flower-outline' },
+    { title: 'Ver Documentos', icon: 'document-text' },
+    { title: 'Solicitar Manutenção', icon: 'build' },
+    { title: 'Agenda de Consultas', icon: 'flower-outline' },
+    { title: 'Ver Alertas', icon: 'notifications' },
   ];
 
   return (
@@ -36,14 +41,14 @@ export default function MenuScreen() {
             key={index}
             style={styles.menuItem}
             onPress={() => {
-            if (item.title === 'Manutenção') {
-              router.push('./solicitar-manutencao/index');
-            } else if (item.title === 'Agendar Computador') {
-              router.push('./shared/reservar-pcs/index');
-            } else {
-                  console.log('Item pressionado:', item.title);
-                }
-          }}
+              if (item.title === 'Manutenção') {
+                router.push('../app/screens/discente/solicitar-manutencao');
+              } else if (item.title === 'Agendar Computador') {
+                router.push('../app/shared/reservar-pcs');
+              } else {
+                console.log('Item pressionado:', item.title);
+              }
+            }}
           >
             <View style={styles.iconContainer}>
               <Ionicons name={item.icon} size={24} color="#3355ce" />
@@ -57,7 +62,6 @@ export default function MenuScreen() {
   );
 }
 
-// Estilos (mantidos os mesmos)
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,

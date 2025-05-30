@@ -1,81 +1,141 @@
-  // app/(tabs)/_layout.tsx
-  import { Tabs } from 'expo-router';
-  import React from 'react';
-  import { Platform } from 'react-native';
+// app/(tabs)/_layout.tsx
+import { Tabs } from 'expo-router';
+import React from 'react';
+import { Platform } from 'react-native';
 
-  import { HapticTab } from '@/components/HapticTab';
-  import { TabIcon } from '@/components/ui/TabIcon';
-  import TabBarBackground from '@/components/ui/TabBarBackground';
-  import { Colors } from '@/constants/Colors';
-  import { TabIcons, TabIconSize } from '@/constants/TabIcon';
-  import { useColorScheme } from '@/hooks/useColorScheme';
+import { HapticTab } from '@/components/HapticTab';
+import TabBarBackground from '@/components/ui/TabBarBackground';
+import { TabIcon } from '@/components/ui/TabIcon';
+import { Colors } from '@/constants/Colors';
+import { TabIcons, TabIconSize } from '@/constants/TabIcon';
+import { useColorScheme } from '@/hooks/useColorScheme';
 
-  export default function TabLayout() {
-    const colorScheme = useColorScheme();
+// SIMULE O TIPO DE USUÁRIO AQUI (altere para 'discente', 'psicologo' ou 'admin')
+const userType: 'discente' | 'psicologo' | 'admin' = 'discente';
 
-    return (
-      <Tabs
-        screenOptions={{
-          tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-          headerShown: false,
-          tabBarButton: HapticTab,
-          tabBarBackground: TabBarBackground,
-          tabBarStyle: Platform.select({
-            ios: {
-              position: 'absolute',
-            },
-            default: {},
-          }),
+export default function TabLayout() {
+  const colorScheme = useColorScheme();
+
+  return (
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        headerShown: false,
+        tabBarButton: HapticTab,
+        tabBarBackground: TabBarBackground,
+        tabBarStyle: Platform.select({
+          ios: {
+            position: 'absolute',
+          },
+          default: {},
+        }),
+      }}
+    >
+      {/* Abas comuns a todos os usuários */}
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: 'Inicial',
+          tabBarIcon: ({ color }) => (
+            <TabIcon source={TabIcons.home} color={color} size={TabIconSize} />
+          ),
         }}
-      >
-        <Tabs.Screen
-          name="index"
-          options={{
-            title: 'Inicial',
-            tabBarIcon: ({ color }) => (
-              <TabIcon source={TabIcons.home} color={color} size={TabIconSize} />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="menu"
-          options={{
-            title: 'Menu',
-            tabBarIcon: ({ color }) => (
-              <TabIcon source={TabIcons.menu} color={color} size={TabIconSize} />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="documentos"
-          options={{
-            title: 'Documentos',
-            tabBarIcon: ({ color }) => (
-              <TabIcon source={TabIcons.documents} color={color} size={TabIconSize} />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="perfil"
-          options={{
-            title: 'Perfil',
-            tabBarIcon: ({ color }) => (
-              <TabIcon source={TabIcons.profile} color={color} size={TabIconSize} />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="configuracoes"
-          options={{
-            title: 'Configurações',
-            tabBarIcon: ({ color }) => (
-              <TabIcon source={TabIcons.settings} color={color} size={TabIconSize} />
-            ),
-          }}
-        />
+      />
 
-        {/* Oculta a tab "admin" da barra inferior */}
+      {/* Tabs para DISCENTE */}
+      {userType === 'discente' && (
+        <>
+          <Tabs.Screen
+            name="menu"
+            options={{
+              title: 'Menu',
+              tabBarIcon: ({ color }) => (
+                <TabIcon source={TabIcons.menu} color={color} size={TabIconSize} />
+              ),
+            }}
+          />
+          <Tabs.Screen
+            name="documentos"
+            options={{
+              title: 'Documentos',
+              tabBarIcon: ({ color }) => (
+                <TabIcon source={TabIcons.documents} color={color} size={TabIconSize} />
+              ),
+            }}
+          />
+          <Tabs.Screen
+            name="perfil"
+            options={{
+              title: 'Perfil',
+              tabBarIcon: ({ color }) => (
+                <TabIcon source={TabIcons.profile} color={color} size={TabIconSize} />
+              ),
+            }}
+          />
+          <Tabs.Screen
+            name="configuracoes"
+            options={{
+              title: 'Configurações',
+              tabBarIcon: ({ color }) => (
+                <TabIcon source={TabIcons.settings} color={color} size={TabIconSize} />
+              ),
+            }}
+          />
+        </>
+      )}
+
+      {/* Tabs para PSICÓLOGO */}
+      {userType === 'psicologo' && (
+        <>
+          <Tabs.Screen
+            name="documentos"
+            options={{
+              title: 'Documentos',
+              tabBarIcon: ({ color }) => (
+                <TabIcon source={TabIcons.documents} color={color} size={TabIconSize} />
+              ),
+            }}
+          />
+          <Tabs.Screen
+            name="perfil"
+            options={{
+              title: 'Perfil',
+              tabBarIcon: ({ color }) => (
+                <TabIcon source={TabIcons.profile} color={color} size={TabIconSize} />
+              ),
+            }}
+          />
+        </>
+      )}
+
+      {/* Tabs para ADMIN */}
+      {userType === 'admin' && (
+        <>
+          <Tabs.Screen
+            name="admin"
+            options={{
+              title: 'Painel',
+              tabBarIcon: ({ color }) => (
+                <TabIcon source={TabIcons.settings} color={color} size={TabIconSize} />
+              ),
+            }}
+          />
+          <Tabs.Screen
+            name="documentos"
+            options={{
+              title: 'Documentos',
+              tabBarIcon: ({ color }) => (
+                <TabIcon source={TabIcons.documents} color={color} size={TabIconSize} />
+              ),
+            }}
+          />
+        </>
+      )}
+
+      {/* Oculta as tabs indesejadas do navigator */}
+      {userType !== 'admin' && (
         <Tabs.Screen name="admin" options={{ href: null }} />
-      </Tabs>
-    );
-  }
+      )}
+    </Tabs>
+  );
+}

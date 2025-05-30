@@ -1,22 +1,31 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import React from 'react';
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 // Definindo o tipo para os itens do menu
 interface MenuItem {
   title: string;
-  icon: React.ComponentProps<typeof Ionicons>['name']; // Isso garante que só ícones válidos sejam usados
+  icon: React.ComponentProps<typeof Ionicons>['name'];
 }
 
-export default function MenuScreen() {
-  // Lista de itens do menu com ícones tipados corretamente
+export default function MenuDiscente() {
+  const router = useRouter();
+
   const menuItems: MenuItem[] = [
-    { title: 'Gestão de Manutenção', icon: 'build' },
-    { title: 'Enviar Comprovante de Residência', icon: 'document-text' },
-    { title: 'Controle de Alertas', icon: 'alert-circle' },
-    { title: 'Controle de Usuários', icon: 'people' },
+   
+    { title: 'Solicitar Documentos', icon: 'document-text' },
+    { title: 'Solicitar Manutenção', icon: 'build' },
     { title: 'Horário do Ônibus', icon: 'bus' },
-    { title: 'Publicar Documentos', icon: 'folder-open' },
-    { title: 'Notificações', icon: 'notifications' },
+    { title: 'Agendar Computador', icon: 'desktop-outline' },
+    { title: 'Solicitar Psicólogo', icon: 'flower-outline' },
+    { title: 'Ver Alertas', icon: 'notifications' },
   ];
 
   return (
@@ -34,7 +43,15 @@ export default function MenuScreen() {
           <Pressable
             key={index}
             style={styles.menuItem}
-            onPress={() => console.log('Item pressionado:', item.title)}
+            onPress={() => {
+              if (item.title === 'Manutenção') {
+                router.push('../app/screens/discente/solicitar-manutencao');
+              } else if (item.title === 'Agendar Computador') {
+                router.push('../app/shared/reservar-pcs');
+              } else {
+                console.log('Item pressionado:', item.title);
+              }
+            }}
           >
             <View style={styles.iconContainer}>
               <Ionicons name={item.icon} size={24} color="#3355ce" />
@@ -48,15 +65,14 @@ export default function MenuScreen() {
   );
 }
 
-// Estilos (mantidos os mesmos)
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#fff',
   },
   container: {
     padding: 20,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#fff',
     paddingTop: 50,
   },
   header: {
@@ -73,7 +89,7 @@ const styles = StyleSheet.create({
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#f0f0f0',
     borderRadius: 12,
     padding: 16,
     paddingVertical: 18,
