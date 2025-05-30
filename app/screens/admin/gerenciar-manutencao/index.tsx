@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable, StatusBar, Platform, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
 import { useRouter } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
+import React, { useState } from 'react';
+import { Platform, Pressable, ScrollView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -42,7 +42,7 @@ export default function ManutencaoScreen() {
   ];
 
   const handleHistorico = () => {
-    router.push('/(tabs)/admin/manutencao/historico');
+    router.push('../gerenciar-manutencao/historico');
   };
 
   return (

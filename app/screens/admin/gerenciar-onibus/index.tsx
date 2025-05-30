@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable, StatusBar, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
 import { useRouter } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
+import React, { useState } from 'react';
+import { Platform, Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -34,7 +34,7 @@ export default function OnibusScreen() {
   }
 
   const handleEditar = () => {
-    router.push('/(tabs)/admin/onibus/editar');
+    router.push('../gerenciar-onibus/editar');
   };
 
   return (

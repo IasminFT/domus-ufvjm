@@ -19,7 +19,6 @@ export default function MenuDiscente() {
   const router = useRouter();
 
   const menuItems: MenuItem[] = [
-   
     { title: 'Solicitar Documentos', icon: 'document-text' },
     { title: 'Solicitar Manutenção', icon: 'build' },
     { title: 'Horário do Ônibus', icon: 'bus' },
