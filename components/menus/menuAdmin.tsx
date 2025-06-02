@@ -19,10 +19,13 @@ export default function MenuAdmin() {
   const router = useRouter();
 
   const menuItems: MenuItem[] = [
-    { title: 'Enviar Documentos', icon: 'document-text' },
-    { title: 'Gerenciar Usuários', icon: 'document-text' },
-    { title: 'Atualizar Horários', icon: 'desktop-outline' },
-    { title: 'Enviar Alertas', icon: 'notifications' },
+    { title: 'Gerenciar Usuários', icon: 'person-circle-outline' },
+    { title: 'Gerenciar Manutenção', icon: 'build' },
+    { title: 'Gerenciar Horários Ônibus', icon: 'bus' },
+    { title: "Gerenciar Horários PC's", icon: 'desktop-outline' },
+    { title: 'Enviar Comprovante', icon: 'document-text' },
+    { title: 'Publicar Documentos', icon: 'document-text' },
+    { title: 'Publicar Alertas', icon: 'notifications' },
   ];
 
   return (

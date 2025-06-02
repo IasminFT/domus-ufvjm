@@ -19,9 +19,10 @@ export default function MenuPsico() {
   const router = useRouter();
 
   const menuItems: MenuItem[] = [
+    { title: 'Agenda de Consultas', icon: 'flower-outline' },
     { title: 'Ver Documentos', icon: 'document-text' },
     { title: 'Solicitar Manutenção', icon: 'build' },
-    { title: 'Agenda de Consultas', icon: 'flower-outline' },
+    { title: 'Agendar Computador', icon: 'desktop-outline' },
     { title: 'Ver Alertas', icon: 'notifications' },
   ];
 
