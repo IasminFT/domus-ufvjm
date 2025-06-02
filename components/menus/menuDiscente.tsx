@@ -43,7 +43,7 @@ export default function MenuDiscente() {
             key={index}
             style={styles.menuItem}
             onPress={() => {
-              if (item.title === 'Manutenção') {
+              if (item.title === 'Solicitar Manutenção') {
                 router.push('../app/screens/discente/solicitar-manutencao');
               } else if (item.title === 'Agendar Computador') {
                 router.push('../app/shared/reservar-pcs');
