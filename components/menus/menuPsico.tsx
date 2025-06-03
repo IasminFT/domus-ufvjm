@@ -42,13 +42,13 @@ export default function MenuPsico() {
             style={styles.menuItem}
             onPress={() => {
                if (item.title === 'Agenda de Consultas') {
-                router.push('../app/screens/psicologo/gerenciar-consultas');
+                router.push('/screens/psicologo/gerenciar-consulta');
               } else if (item.title === 'Solicitar Manutenção') {
-                router.push('../app/screens/discente/solicitar-manutencao');
+                router.push('/screens/discente/solicitar-manutencao');
               } else if (item.title === 'Agendar Computador') {
-                router.push('../app/shared/reservar-pcs');
+                router.push('/shared/reservar-pcs');
               } else if (item.title === 'Ver Alertas') {
-                router.push('../app/shared/alertas');
+                router.push('/shared/alertas');
               } else {
                 console.log('Item pressionado:', item.title);
               }

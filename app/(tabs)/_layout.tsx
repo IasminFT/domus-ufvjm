@@ -11,7 +11,7 @@ import { TabIcons, TabIconSize } from '@/constants/TabIcon';
 import { useColorScheme } from '@/hooks/useColorScheme';
 
 // SIMULE O TIPO DE USUÁRIO AQUI (altere para 'discente', 'psicologo' ou 'admin')
-const userType: 'discente' | 'psicologo' | 'admin' = 'discente';
+const userType: 'discente' | 'psicologo' | 'admin' = 'admin';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();

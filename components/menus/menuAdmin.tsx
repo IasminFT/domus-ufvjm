@@ -45,19 +45,19 @@ export default function MenuAdmin() {
             style={styles.menuItem}
             onPress={() => {
               if (item.title === 'Gerenciar Usuários') {
-                router.push('../app/screens/admin/gerenciar-usuarios');
+                router.push('/screens/admin/gerenciar-usuarios');
               } else if (item.title === 'Gerenciar Manutenção') {
-                router.push('../app/screens/admin/gerenciar-manutencao');
+                router.push('/screens/admin/gerenciar-manutencao');
               } else if (item.title === 'Gerenciar Horários Ônibus') {
-                router.push('../app/screens/admin/gerenciar-onibus');
+                router.push('/screens/admin/gerenciar-onibus');
               } else if (item.title === "Gerenciar Horários PC's") {
-                router.push('../app/screens/admin/gerenciar-pcs');
+                router.push('/screens/admin/gerenciar-pcs/index');
               } else if (item.title === 'Enviar Comprovante') {
-                router.push('../app/screens/admin/enviar-comprovante');
+                router.push('/screens/admin/enviar-comprovante');
               } else if (item.title === 'Publicar Documentos') {
-                router.push('../app/screens/admin/publicar-documentos');
+                router.push('/screens/admin/publicar-documentos');
               } else if (item.title === 'Publicar Alertas') {
-                router.push('../app/screens/admin/publicar-alertas');
+                router.push('/screens/admin/publicar-alertas');
               } else {
                 console.log('Item pressionado:', item.title);
               }

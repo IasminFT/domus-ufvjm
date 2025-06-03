@@ -44,17 +44,17 @@ export default function MenuDiscente() {
             style={styles.menuItem}
             onPress={() => {
               if (item.title === 'Solicitar Documentos') {
-                router.push('../app/screens/discente/solicitar-documentos');
+                router.push('/screens/discente/solicitar-documentos');
               } else if (item.title === 'Solicitar Manutenção') {
-                router.push('../app/screens/discente/solicitar-manutencao');
+                router.push('/screens/discente/solicitar-manutencao');
               } else if (item.title === 'Horários do Ônibus') {
-                router.push('../app/screens/discente/horários-onibus');
+                router.push('/screens/discente/horários-onibus');
               } else if (item.title === 'Agendar Computador') {
-                router.push('../app/shared/reservar-pcs');
+                router.push('/shared/reservar-pcs');
               } else if (item.title === 'Solicitar Psicólogo') {
-                router.push('../app/discente/solicitar-psicologo');
+                router.push('/screens/discente/solicitar-psicologo');
               } else if (item.title === 'Ver Alertas') {
-                router.push('../app/shared/alertas');
+                router.push('/shared/alertas');
               } else {
                 console.log('Item pressionado:', item.title);
               }
