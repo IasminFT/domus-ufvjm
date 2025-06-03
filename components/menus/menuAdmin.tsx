@@ -44,10 +44,20 @@ export default function MenuAdmin() {
             key={index}
             style={styles.menuItem}
             onPress={() => {
-              if (item.title === 'Manutenção') {
-                router.push('../app/screens/discente/solicitar-manutencao');
-              } else if (item.title === 'Agendar Computador') {
-                router.push('../app/shared/reservar-pcs');
+              if (item.title === 'Gerenciar Usuários') {
+                router.push('../app/screens/admin/gerenciar-usuarios');
+              } else if (item.title === 'Gerenciar Manutenção') {
+                router.push('../app/screens/admin/gerenciar-manutencao');
+              } else if (item.title === 'Gerenciar Horários Ônibus') {
+                router.push('../app/screens/admin/gerenciar-onibus');
+              } else if (item.title === "Gerenciar Horários PC's") {
+                router.push('../app/screens/admin/gerenciar-pcs');
+              } else if (item.title === 'Enviar Comprovante') {
+                router.push('../app/screens/admin/enviar-comprovante');
+              } else if (item.title === 'Publicar Documentos') {
+                router.push('../app/screens/admin/publicar-documentos');
+              } else if (item.title === 'Publicar Alertas') {
+                router.push('../app/screens/admin/publicar-alertas');
               } else {
                 console.log('Item pressionado:', item.title);
               }

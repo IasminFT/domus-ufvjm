@@ -20,7 +20,6 @@ export default function MenuPsico() {
 
   const menuItems: MenuItem[] = [
     { title: 'Agenda de Consultas', icon: 'flower-outline' },
-    { title: 'Ver Documentos', icon: 'document-text' },
     { title: 'Solicitar Manutenção', icon: 'build' },
     { title: 'Agendar Computador', icon: 'desktop-outline' },
     { title: 'Ver Alertas', icon: 'notifications' },
@@ -42,10 +41,14 @@ export default function MenuPsico() {
             key={index}
             style={styles.menuItem}
             onPress={() => {
-              if (item.title === 'Manutenção') {
+               if (item.title === 'Agenda de Consultas') {
+                router.push('../app/screens/psicologo/gerenciar-consultas');
+              } else if (item.title === 'Solicitar Manutenção') {
                 router.push('../app/screens/discente/solicitar-manutencao');
               } else if (item.title === 'Agendar Computador') {
                 router.push('../app/shared/reservar-pcs');
+              } else if (item.title === 'Ver Alertas') {
+                router.push('../app/shared/alertas');
               } else {
                 console.log('Item pressionado:', item.title);
               }
