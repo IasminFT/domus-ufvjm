@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
   },
   bottomText:{
     alignSelf:'center',
-    margin: 40,
+    margin: 10,
+    textAlign: 'center'
   }
 });

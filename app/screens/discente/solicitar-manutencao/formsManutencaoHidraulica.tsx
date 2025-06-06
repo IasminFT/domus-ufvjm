@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     fontSize: 16,
-    marginBottom: 30,
+    marginBottom: 20,
     fontFamily: 'Afacad-Regular',
     color: '#504A4A',
   },
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     alignItems: 'center',
-    marginTop: 100,
+    marginTop: 20,
   },
   submitButton: {
     backgroundColor: '#3355ce',

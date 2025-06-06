@@ -1,10 +1,9 @@
-import { View, Text, StyleSheet, ScrollView, Switch, Pressable, StatusBar, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useState } from 'react';
-import { Link } from 'expo-router';
 import { useFonts } from 'expo-font';
+import { router } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import React from 'react';
+import React, { useState } from 'react';
+import { Platform, Pressable, ScrollView, StatusBar, StyleSheet, Switch, Text, View } from 'react-native';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -89,7 +88,7 @@ export default function SettingsScreen() {
         {
           icon: 'log-out',
           label: 'Sair da Conta',
-          action: () => {},
+          action: () => {router.push('/shared/login')},
           rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
         },
       ],

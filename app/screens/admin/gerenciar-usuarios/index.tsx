@@ -40,11 +40,11 @@ export default function UsuariosScreen() {
   }
 
   const handleAddUser = () => {
-    router.push('../admin/gerenciar-usuarios/novo-usuario');
+    router.push('/screens/admin/gerenciar-usuarios/novo-usuario');
   };
 
   const handleEditUser = (userId: number) => {
-    router.push(`../admin/gerenciar-usuarios/editar-usuario/${userId}`);
+    router.push(`./screens/admin/gerenciar-usuarios/editar-usuario/${userId}`);
   };
 
   const handleDeleteUser = (userId: number) => {

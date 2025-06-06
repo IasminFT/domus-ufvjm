@@ -36,9 +36,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Inicial',
-          tabBarIcon: ({ color }) => (
-            <TabIcon source={TabIcons.home} color={color} size={TabIconSize} />
-          ),
+          tabBarIcon: ({ color }) => (<TabIcon source={TabIcons.home} color={color} size={TabIconSize} />),
         }}
       />
 
@@ -49,36 +47,28 @@ export default function TabLayout() {
             name="menu"
             options={{
               title: 'Menu',
-              tabBarIcon: ({ color }) => (
-                <TabIcon source={TabIcons.menu} color={color} size={TabIconSize} />
-              ),
+              tabBarIcon: ({ color }) => (<TabIcon source={TabIcons.menu} color={color} size={TabIconSize} />),
             }}
           />
           <Tabs.Screen
             name="documentos"
             options={{
               title: 'Documentos',
-              tabBarIcon: ({ color }) => (
-                <TabIcon source={TabIcons.documents} color={color} size={TabIconSize} />
-              ),
+              tabBarIcon: ({ color }) => (<TabIcon source={TabIcons.documents} color={color} size={TabIconSize} />),
             }}
           />
           <Tabs.Screen
             name="perfil"
             options={{
               title: 'Perfil',
-              tabBarIcon: ({ color }) => (
-                <TabIcon source={TabIcons.profile} color={color} size={TabIconSize} />
-              ),
+              tabBarIcon: ({ color }) => (<TabIcon source={TabIcons.profile} color={color} size={TabIconSize} />),
             }}
           />
           <Tabs.Screen
             name="configuracoes"
             options={{
               title: 'Configurações',
-              tabBarIcon: ({ color }) => (
-                <TabIcon source={TabIcons.settings} color={color} size={TabIconSize} />
-              ),
+              tabBarIcon: ({ color }) => (<TabIcon source={TabIcons.settings} color={color} size={TabIconSize} />),
             }}
           />
         </>

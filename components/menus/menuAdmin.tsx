@@ -51,7 +51,7 @@ export default function MenuAdmin() {
               } else if (item.title === 'Gerenciar Horários Ônibus') {
                 router.push('/screens/admin/gerenciar-onibus');
               } else if (item.title === "Gerenciar Horários PC's") {
-                router.push('/screens/admin/gerenciar-pcs/index');
+                router.push('/screens/admin/gerenciar-pcs');
               } else if (item.title === 'Enviar Comprovante') {
                 router.push('/screens/admin/enviar-comprovante');
               } else if (item.title === 'Publicar Documentos') {

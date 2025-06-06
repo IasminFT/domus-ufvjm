@@ -1,19 +1,25 @@
-// src/components/TabIcon.tsx
+// src/components/ui/TabIcon.tsx
 import React from 'react';
 import { Image, ImageStyle } from 'react-native';
 
-interface TabIconProps {
-  source: any;
+type Props = {
+  source: any;      // pode ser ImageSourcePropType, mas any funciona para o require
   color: string;
-  size?: number;
-}
+  size: number;
+};
 
-export const TabIcon = ({ source, color, size = 24 }: TabIconProps) => {
+export const TabIcon = ({ source, color, size }: Props) => {
   const style: ImageStyle = {
     width: size,
     height: size,
     tintColor: color,
   };
 
-  return <Image source={source} style={style} />;
+  return (
+    <Image
+      source={source}
+      style={style}
+      resizeMode="contain"
+    />
+  );
 };

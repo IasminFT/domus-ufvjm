@@ -1,9 +1,8 @@
-import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import { useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useState } from 'react';
-import { Platform, Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { Platform, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -34,7 +33,7 @@ export default function OnibusScreen() {
   }
 
   const handleEditar = () => {
-    router.push('/screens/admin/gerenciar-onibus/editar');
+    router.push('../gerenciar-onibus/editar');
   };
 
   return (
@@ -67,17 +66,6 @@ export default function OnibusScreen() {
         </View>
 
         <Text style={styles.updateText}>Tabela atualizada em 16/08/2024</Text>
-
-        <Pressable
-          style={({ pressed }) => [
-            styles.editButton,
-            pressed && styles.editButtonPressed
-          ]}
-          onPress={handleEditar}
-        >
-          <Ionicons name="create-outline" size={20} color="#3355ce" />
-          <Text style={styles.editButtonText}>EDITAR HORÁRIOS</Text>
-        </Pressable>
       </View>
     </ScrollView>
   );

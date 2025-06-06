@@ -48,7 +48,7 @@ export default function MenuDiscente() {
               } else if (item.title === 'Solicitar Manutenção') {
                 router.push('/screens/discente/solicitar-manutencao');
               } else if (item.title === 'Horários do Ônibus') {
-                router.push('/screens/discente/horários-onibus');
+                router.push('/screens/discente/horarios-onibus');
               } else if (item.title === 'Agendar Computador') {
                 router.push('/shared/reservar-pcs');
               } else if (item.title === 'Solicitar Psicólogo') {

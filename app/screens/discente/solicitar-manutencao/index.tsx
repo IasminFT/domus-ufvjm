@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default function SolicitarManutencao() {
+export default function FormsSolicitarManutencao() {
   const router = useRouter();
 
   const manutencaoItems = [
@@ -15,7 +15,13 @@ export default function SolicitarManutencao() {
 
   return (
     <ScrollView style={styles.scrollView} contentContainerStyle={styles.container}>
-      <Text style={styles.pageTitle}>MANUTENÇÃO</Text>
+      
+      <View style={styles.titleContainer}>
+      <Text style={styles.pageTitle}>SOLICITAR MANUTENÇÃO</Text>
+      <Pressable onPress={() => router.push('/screens/discente/solicitar-manutencao/historico-manutencao')}>
+        <Ionicons name="time-outline" size={40} color="#504A4A" style={styles.titleIcon} />
+      </Pressable>
+      </View>
 
       <View style={styles.searchContainer}>
         <Ionicons name="search" size={20} color="#888" style={styles.searchIcon} />
@@ -31,15 +37,15 @@ export default function SolicitarManutencao() {
           <Pressable key={index} style={styles.menuItem}
             onPress={() => {
               if (item.title === 'Manutenção Hidráulica') {
-                router.push('./formsManutencaoHidraulica');
+                router.push('/screens/discente/solicitar-manutencao/formsManutencaoHidraulica');
               } else if (item.title === 'Manutenção de Internet'){
-                router.push('./formsManutencaoInternet');
+                router.push('/screens/discente/solicitar-manutencao/formsManutencaoInternet');
               } else if (item.title === 'Manutenção Elétrica'){
-                router.push('./formsManutencaoEletrica');
+                router.push('/screens/discente/solicitar-manutencao/formsManutencaoEletrica');
               } else if (item.title === 'Manutenção Estrutural'){
-                router.push('./formsManutencaoEstrutural');
+                router.push('/screens/discente/solicitar-manutencao/formsManutencaoEstrutural');
               } else if (item.title === 'Manutenção em PCs'){
-                router.push('./formsManutencaoPC');
+                router.push('/screens/discente/solicitar-manutencao/formsManutencaoPC');
               }          
               else {
                 console.log('Item pressionado:', item.title);
@@ -55,7 +61,7 @@ export default function SolicitarManutencao() {
         ))}
       </View>
 
-      <Pressable style={styles.historyButton} onPress={() => router.push('./historico-manutencao')}>
+      <Pressable style={styles.historyButton} onPress={() => router.push('/screens/discente/solicitar-manutencao/historico-manutencao')}>
         <Ionicons name="time" size={20} color="#888" style={{ marginRight: 10 }} />
         <Text style={styles.historyText}>Histórico de Manutenções</Text>
       </Pressable>
@@ -78,8 +84,14 @@ const styles = StyleSheet.create({
   pageTitle: {
     fontSize: 40,
     color: '#3355ce',
-    marginBottom: 20,
     fontFamily: 'BebasNeue-Regular',
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingBottom: 10,
+    marginBottom: 20,
   },
   searchContainer: {
     flexDirection: 'row',
@@ -92,6 +104,9 @@ const styles = StyleSheet.create({
   },
   searchIcon: {
     marginRight: 8,
+  },
+  titleIcon: {
+    marginBottom:5,
   },
   searchInput: {
     flex: 1,

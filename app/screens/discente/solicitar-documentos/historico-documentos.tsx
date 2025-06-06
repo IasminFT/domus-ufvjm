@@ -1,20 +1,20 @@
 import { Ionicons } from '@expo/vector-icons';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
-export default function HistoricoManutencoes() {
+export default function HistoricoDocumentos() {
   const historico = [
     {
-      tipo: 'Manutenção Hidráulica',
+      tipo: 'Documento X',
       data: '10/05/2025',
-      status: 'Concluída',
+      status: 'Entregue',
     },
     {
-      tipo: 'Manutenção de Internet',
+      tipo: 'Documento Y',
       data: '08/05/2025',
       status: 'Pendente',
     },
     {
-      tipo: 'Manutenção Elétrica',
+      tipo: 'Documento Z',
       data: '04/05/2025',
       status: 'Em andamento',
     },
@@ -22,11 +22,11 @@ export default function HistoricoManutencoes() {
 
   return (
     <ScrollView style={styles.scrollView} contentContainerStyle={styles.container}>
-      <Text style={styles.pageTitle}>HISTÓRICO DE MANUTENÇÕES</Text>
+      <Text style={styles.pageTitle}>HISTÓRICO DE SOLICITAÇÃO DE DOCUMENTOS</Text>
 
       {historico.map((item, index) => (
         <View key={index} style={styles.card}>
-          <Ionicons name="construct" size={24} color="#3355ce" style={styles.icon} />
+          <Ionicons name="document" size={24} color="#3355ce" style={styles.icon} />
           <View style={styles.cardContent}>
             <Text style={styles.tipo}>{item.tipo}</Text>
             <Text style={styles.detalhes}>Data: {item.data}</Text>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   pageTitle: {
     fontSize: 40,
     color: '#3355ce',
-    marginBottom: 10,
+    marginBottom: 30,
     fontFamily: 'BebasNeue-Regular',
   },
   card: {
