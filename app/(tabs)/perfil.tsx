@@ -6,6 +6,51 @@ import { Image, Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from 
 
 SplashScreen.preventAutoHideAsync();
 
+function ProfileItem({
+  icon,
+  label,
+  value,
+  onPress,
+}: {
+  icon: React.ComponentProps<typeof Ionicons>['name'];
+  label: string;
+  value?: string;
+  onPress?: () => void;
+}) {
+  if (onPress) {
+    return (
+      <Pressable
+        style={({ pressed }) => [styles.settingItem, pressed && styles.itemPressed]}
+        onPress={onPress}
+      >
+        <View style={styles.itemContent}>
+          <View style={styles.iconContainer}>
+            <Ionicons name={icon} size={20} color="#3355ce" />
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={styles.itemText}>{label}</Text>
+            {value && <Text style={styles.itemValue}>{value}</Text>}
+          </View>
+        </View>
+      </Pressable>
+    );
+  }
+
+  return (
+    <View style={styles.settingItem}>
+      <View style={styles.itemContent}>
+        <View style={styles.iconContainer}>
+          <Ionicons name={icon} size={20} color="#3355ce" />
+        </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.itemText}>{label}</Text>
+          {value && <Text style={styles.itemValue}>{value}</Text>}
+        </View>
+      </View>
+    </View>
+  );
+}
+
 export default function ProfileScreen() {
   const [fontsLoaded] = useFonts({
     'Afacad-Regular': require('@/assets/fonts/Afacad-VariableFont_wght.ttf'),
@@ -32,80 +77,45 @@ export default function ProfileScreen() {
     apartamento: '305',
     curso: 'Sistemas de Informação',
     telefone: '(38) 99999-9999',
-    status: 'Ativo'
+    status: 'Ativo',
   };
 
   const profileGroups = [
     {
       title: 'INFORMAÇÕES ACADÊMICAS',
       items: [
-        {
-          icon: 'id-card',
-          label: 'Matrícula',
-          value: user.matricula,
-        },
-        {
-          icon: 'school',
-          label: 'Curso',
-          value: user.curso,
-        },
-        {
-          icon: 'calendar',
-          label: 'Ano de Entrada',
-          value: user.anoEntrada,
-        },
-        {
-          icon: 'exit',
-          label: 'Previsão de Saída',
-          value: user.previsaoSaida,
-        },
+        { icon: 'id-card', label: 'Matrícula', value: user.matricula },
+        { icon: 'school', label: 'Curso', value: user.curso },
+        { icon: 'calendar', label: 'Ano de Entrada', value: user.anoEntrada },
+        { icon: 'exit', label: 'Previsão de Saída', value: user.previsaoSaida },
       ],
     },
     {
       title: 'INFORMAÇÕES RESIDENCIAIS',
       items: [
-        {
-          icon: 'home',
-          label: 'Bloco',
-          value: user.bloco,
-        },
-        {
-          icon: 'business',
-          label: 'Apartamento',
-          value: user.apartamento,
-        },
-      ],
-    },
-    {
-      title: 'CONFIGURAÇÕES',
-      items: [
-        {
-          icon: 'lock-closed',
-          label: 'Alterar Senha',
-          action: () => {},
-          rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
-        },
+        { icon: 'home', label: 'Bloco', value: user.bloco },
+        { icon: 'business', label: 'Apartamento', value: user.apartamento },
       ],
     },
   ];
 
   return (
-    <ScrollView 
+    <ScrollView
       style={styles.scrollView}
       contentContainerStyle={styles.scrollViewContent}
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.container} onLayout={onLayoutRootView}>
         <StatusBar barStyle="dark-content" />
-        
+
         <View style={styles.header}>
           <Text style={styles.pageTitle}>PERFIL</Text>
         </View>
 
         <View style={styles.profileHeader}>
           <View style={styles.avatarContainer}>
-            <Image 
-              source={require('@/assets/images/icons/profile-count.png')} 
+            <Image
+              source={require('@/assets/images/icons/profile-count.png')}
               style={styles.avatar}
             />
             <View style={styles.statusIndicator} />
@@ -120,25 +130,12 @@ export default function ProfileScreen() {
             <Text style={styles.groupTitle}>{group.title}</Text>
             <View style={styles.groupContainer}>
               {group.items.map((item, itemIndex) => (
-                <Pressable
+                <ProfileItem
                   key={itemIndex}
-                  style={({pressed}) => [
-                    styles.settingItem,
-                    pressed && styles.itemPressed
-                  ]}
-                  onPress={item.action || (() => {})}
-                >
-                  <View style={styles.itemContent}>
-                    <View style={styles.iconContainer}>
-                      <Ionicons name={item.icon as any} size={20} color="#3355ce" />
-                    </View>
-                    <View style={styles.textContainer}>
-                      <Text style={styles.itemText}>{item.label}</Text>
-                      {item.value && <Text style={styles.itemValue}>{item.value}</Text>}
-                    </View>
-                  </View>
-                  {item.rightComponent}
-                </Pressable>
+                  icon={item.icon as any}
+                  label={item.label}
+                  value={item.value}
+                />
               ))}
             </View>
           </View>
@@ -155,6 +152,7 @@ const styles = StyleSheet.create({
   },
   scrollViewContent: {
     flexGrow: 1,
+    paddingBottom: 100,
   },
   container: {
     backgroundColor: 'white',
@@ -170,7 +168,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: '#3355ce',
     fontFamily: 'BebasNeue-Regular',
-    top: 32
+    top: 32,
   },
   profileHeader: {
     alignItems: 'center',
@@ -180,7 +178,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     borderColor: '#e0e0e0',
-    top: 32
+    top: 32,
   },
   avatarContainer: {
     position: 'relative',
@@ -228,7 +226,7 @@ const styles = StyleSheet.create({
   },
   settingsGroup: {
     marginBottom: 20,
-    top: 32
+    top: 32,
   },
   groupTitle: {
     fontSize: 14,
@@ -248,7 +246,7 @@ const styles = StyleSheet.create({
   settingItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#e0e0e0',

@@ -82,7 +82,7 @@ export default function SettingsScreen() {
         {
           icon: 'lock-closed',
           label: 'Alterar Senha',
-          action: () => {},
+          action: () => {router.push('/shared/configuracoes/alterar-senha')},
           rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
         },
         {
@@ -99,13 +99,13 @@ export default function SettingsScreen() {
         {
           icon: 'document-text',
           label: 'Termos de Uso',
-          action: () => {},
+          action: () => {router.push('/shared/configuracoes/termos-uso')},
           rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
         },
         {
           icon: 'shield-checkmark',
           label: 'Política de Privacidade',
-          action: () => {},
+          action: () => {router.push('/shared/configuracoes/politica')},
           rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
         },
       ],
@@ -116,13 +116,13 @@ export default function SettingsScreen() {
         {
           icon: 'help-circle',
           label: 'Central de Ajuda',
-          action: () => {},
+          action: () => {router.push('/shared/configuracoes/central-ajuda')},
           rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
         },
         {
           icon: 'chatbubbles',
           label: 'Fale Conosco',
-          action: () => {},
+          action: () => {router.push('/shared/configuracoes/fale-conosco')},
           rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
         },
       ],
@@ -133,13 +133,13 @@ export default function SettingsScreen() {
         {
           icon: 'people',
           label: 'Equipe de Desenvolvimento',
-          action: () => {},
+          action: () => {router.push('/shared/configuracoes/equipe')},
           rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
         },
         {
           icon: 'code',
           label: 'Tecnologias Utilizadas',
-          action: () => {},
+          action: () => {router.push('/shared/configuracoes/tecnologias')},
           rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
         },
       ],
@@ -150,13 +150,13 @@ export default function SettingsScreen() {
         {
           icon: 'heart',
           label: 'Apoiadores',
-          action: () => {},
+          action: () => {router.push('/shared/configuracoes/apoiadores')},
           rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
         },
         {
           icon: 'ribbon',
           label: 'Licenças',
-          action: () => {},
+          action: () => {router.push('/shared/configuracoes/licencas')},
           rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
         },
       ],
@@ -213,6 +213,7 @@ const styles = StyleSheet.create({
   },
   scrollViewContent: {
     flexGrow: 1,
+    paddingBottom: 100,
   },
   container: {
     backgroundColor: 'white',
