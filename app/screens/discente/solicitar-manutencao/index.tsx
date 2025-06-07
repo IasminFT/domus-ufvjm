@@ -19,7 +19,6 @@ export default function FormsSolicitarManutencao() {
       <View style={styles.titleContainer}>
       <Text style={styles.pageTitle}>SOLICITAR MANUTENÇÃO</Text>
       <Pressable onPress={() => router.push('/screens/discente/solicitar-manutencao/historico-manutencao')}>
-        <Ionicons name="time-outline" size={40} color="#504A4A" style={styles.titleIcon} />
       </Pressable>
       </View>
 
@@ -62,8 +61,7 @@ export default function FormsSolicitarManutencao() {
       </View>
 
       <Pressable style={styles.historyButton} onPress={() => router.push('/screens/discente/solicitar-manutencao/historico-manutencao')}>
-        <Ionicons name="time" size={20} color="#888" style={{ marginRight: 10 }} />
-        <Text style={styles.historyText}>Histórico de Manutenções</Text>
+        <Text style={styles.historyText}>Ver Histórico de Manutenções</Text>
       </Pressable>
 
     </ScrollView>

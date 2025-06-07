@@ -40,7 +40,6 @@ export default function ReservarPCs() {
     <ScrollView style={styles.scrollView} contentContainerStyle={styles.container}>
         <View style={styles.titleContainer}>
             <Text style={styles.pageTitle}>PC'S</Text>
-            <Ionicons name="alert-circle-outline" size={40} color="#504A4A" style={styles.titleIcon} />
         </View>
 
       <View style={styles.searchContainer}>

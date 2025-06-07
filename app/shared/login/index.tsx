@@ -52,9 +52,6 @@ export default function RegisterScreen() {
         <TouchableOpacity onPress={() => alert('Funcionalidade de ajuda ainda não implementada')}>
           <Text style={styles.helpText}>Precisa de ajuda?</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => router.push('/shared/cadastro')}>
-          <Text style={styles.helpText}>Não tem uma conta? <strong>Cadastrar.</strong></Text>
-        </TouchableOpacity>
       </View>
     </View>
   );

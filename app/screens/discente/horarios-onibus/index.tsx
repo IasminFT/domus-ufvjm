@@ -132,10 +132,11 @@ const styles = StyleSheet.create({
   },
   updateText: {
     textAlign: 'right',
-    marginTop: 10,
+    marginTop: 20,
     fontFamily: 'Afacad-Regular',
     fontSize: 14,
     color: '#888',
+    alignSelf: 'center'
   },
   editButton: {
     flexDirection: 'row',

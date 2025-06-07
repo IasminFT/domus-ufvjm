@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
@@ -29,7 +28,6 @@ export default function FormsSolicitarDocumento() {
       <View style={styles.titleContainer}>
         <Text style={styles.pageTitle}>SOLICITAR DOCUMENTOS</Text>
         <Pressable onPress={() => router.push('/screens/discente/solicitar-documentos/historico-documentos')}>
-            <Ionicons name="time-outline" size={40} color="#504A4A" style={styles.titleIcon} />
         </Pressable>
       </View>
 
@@ -56,6 +54,11 @@ export default function FormsSolicitarDocumento() {
           <Text style={styles.submitText}>Enviar Solicitação</Text>
         </Pressable>
       </View>
+
+      <Pressable style={styles.historyButton} onPress={() => router.push('/screens/discente/solicitar-documentos/historico-documentos')}>
+        <Text style={styles.historyText}>Ver Histórico de Solicitações</Text>
+      </Pressable>
+
     </ScrollView>
   );
 }
@@ -127,6 +130,20 @@ const styles = StyleSheet.create({
   },
   submitText: {
     color: '#fff',
+    fontSize: 16,
+    fontFamily: 'Afacad-Regular',
+  },
+   historyButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 12,
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    justifyContent: 'center',
+    marginTop: 30,
+  },
+  historyText: {
+    color: '#888',
     fontSize: 16,
     fontFamily: 'Afacad-Regular',
   },
