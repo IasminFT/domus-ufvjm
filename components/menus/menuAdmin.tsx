@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     backgroundColor: '#fff',
-    paddingTop: 50,
+    paddingTop: 70,
   },
   header: {
     marginBottom: 30,

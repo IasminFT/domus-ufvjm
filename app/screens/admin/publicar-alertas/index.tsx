@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable, StatusBar, Platform, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
+import { useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
+import React, { useState } from 'react';
+import { Platform, Pressable, ScrollView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function AlertasScreen() {
+  const router = useRouter();
   const [fontsLoaded, fontError] = useFonts({
     'Afacad-Regular': require('@/assets/fonts/Afacad-VariableFont_wght.ttf'),
     'Afacad-Italic': require('@/assets/fonts/Afacad-Italic-VariableFont_wght.ttf'),
@@ -34,9 +36,9 @@ export default function AlertasScreen() {
   };
 
   const handleHistorico = () => {
-    // Navegar para tela de histórico ou abrir modal
     console.log('Abrir histórico de alertas');
     alert('Histórico de alertas será exibido aqui');
+    router.push('/shared/alertas');
   };
 
   return (
@@ -85,7 +87,7 @@ export default function AlertasScreen() {
             ]}
             onPress={handleEnviar}
           >
-            <Text style={styles.buttonText}>ENVIAR ALERTA</Text>
+            <Text style={styles.buttonText}>Enviar Alerta</Text>
           </Pressable>
         </View>
       </View>
@@ -162,7 +164,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontFamily: 'BebasNeue-Regular',
-    fontSize: 20,
-  },
+    fontFamily: 'Afacad-Regular',
+    fontWeight: 'bold',
+    fontSize: 20,}
 });

@@ -3,7 +3,7 @@ import { useFonts } from 'expo-font';
 import { useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useState } from 'react';
-import { Platform, Pressable, ScrollView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -44,8 +44,8 @@ export default function UsuariosScreen() {
   };
 
   const handleEditUser = (userId: number) => {
-    router.push(`./screens/admin/gerenciar-usuarios/editar-usuario/${userId}`);
-  };
+  router.push(`/screens/admin/gerenciar-usuarios/editar-usuario?id=${userId}`);
+};
 
   const handleDeleteUser = (userId: number) => {
     setUsers(users.filter(user => user.id !== userId));
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     padding: 20,
     flex: 1,
     justifyContent: 'flex-start',
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 40,
+    paddingTop: 50,
   },
   header: {
     flexDirection: 'row',
@@ -141,8 +141,8 @@ const styles = StyleSheet.create({
   pageTitle: {
     fontSize: 40,
     color: '#3355ce',
-    fontFamily: 'BebasNeue-Regular',
-    top: 32
+    top: 32,
+    fontFamily: 'BebasNeue-Regular'
   },
   addButton: {
     padding: 10,

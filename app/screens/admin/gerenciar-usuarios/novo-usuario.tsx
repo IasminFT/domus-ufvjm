@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { useFonts } from "expo-font";
 import React, { useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
@@ -13,6 +14,12 @@ export default function AdicionarUsuario() {
     anoEntrada: "",
     email: "",
   });
+
+  const [fontsLoaded, fontError] = useFonts({
+      'Afacad-Regular': require('@/assets/fonts/Afacad-VariableFont_wght.ttf'),
+      'Afacad-Italic': require('@/assets/fonts/Afacad-Italic-VariableFont_wght.ttf'),
+      'BebasNeue-Regular': require('@/assets/fonts/BebasNeue-Regular.ttf'),
+    });
 
   const handleChange = (field: string, value: string) => {
     setFormData({ ...formData, [field]: value });
@@ -66,11 +73,11 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontSize: 26,
+    fontSize: 40,
     color: "#3355ce",
-    marginBottom: 20,
+    marginBottom: 30,
     textAlign: "center",
-    fontFamily: 'Alfacad-Regular'
+    fontFamily: 'BebasNeue-Regular'
   },
   inputGroup: {
     marginBottom: 12,
@@ -78,6 +85,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     marginBottom: 4,
+    fontFamily: 'Afacad-Regular',
   },
   input: {
     borderWidth: 1,
@@ -85,6 +93,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 10,
     backgroundColor: "#f9f9f9",
+    fontFamily: 'Afacad-Regular',
   },
   button: {
     flexDirection: "row",
@@ -99,5 +108,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontWeight: "bold",
+    fontFamily: 'Afacad-Regular',
+    fontSize: 20
   },
 });

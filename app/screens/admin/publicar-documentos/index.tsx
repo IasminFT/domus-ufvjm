@@ -91,8 +91,6 @@ export default function DocumentosScreen() {
             <Text style={styles.arquivoText}>Arquivo selecionado: {arquivo}</Text>
           ) : null}
 
-          <Text style={styles.charLimit}>200 caracteres restantes</Text>
-
           <Pressable
             style={({ pressed }) => [
               styles.button,
@@ -100,7 +98,7 @@ export default function DocumentosScreen() {
             ]}
             onPress={handleEnviar}
           >
-            <Text style={styles.buttonText}>PUBLICAR DOCUMENTO</Text>
+            <Text style={styles.buttonText}>Publicar Documento</Text>
           </Pressable>
         </View>
       </View>
@@ -201,8 +199,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontFamily: 'Alfacad-Regular',
+    fontFamily: 'Afacad-Regular',
     fontWeight: 'bold',
-    fontSize: 20,
-  },
+    fontSize: 20,}
 });

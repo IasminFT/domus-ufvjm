@@ -1,8 +1,7 @@
-import React, { useCallback } from 'react';
-import { StyleSheet, View, Text, TextInput, Pressable, Image, StatusBar, Platform, ScrollView } from 'react-native';
-import { Link } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import React, { useCallback } from 'react';
+import { Image, Platform, Pressable, ScrollView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -244,7 +243,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 24,
     fontFamily: 'Angkor-Regular',
-    marginTop: 2,
+    marginTop: 4,
     marginBottom: 10,
     lineHeight: 30,
   },

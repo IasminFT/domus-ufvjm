@@ -1,9 +1,8 @@
-import { View, Text, StyleSheet, ScrollView, Image, Pressable, StatusBar, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Link } from 'expo-router';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import React from 'react';
+import { Image, Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -80,12 +79,6 @@ export default function ProfileScreen() {
     {
       title: 'CONFIGURAÇÕES',
       items: [
-        {
-          icon: 'person',
-          label: 'Editar Perfil',
-          action: () => {},
-          rightComponent: <Ionicons name="chevron-forward" size={20} color="#888" />,
-        },
         {
           icon: 'lock-closed',
           label: 'Alterar Senha',
@@ -168,7 +161,7 @@ const styles = StyleSheet.create({
     padding: 20,
     flex: 1,
     justifyContent: 'flex-start',
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 40,
+    paddingTop: 40,
   },
   header: {
     marginBottom: 20,
