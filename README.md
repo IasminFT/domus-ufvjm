@@ -1,50 +1,54 @@
-# Welcome to your Expo app 👋
+# 🏠 DOMUS – Sistema de Gestão da Moradia Estudantil
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+DOMUS é um sistema web desenvolvido durante a disciplina de Engenharia de Software, do curso de Sistemas de Informação da UFVJM. Ele foi criado com o objetivo de gerenciar de forma eficiente as rotinas administrativas e operacionais da moradia estudantil universitária. Ele permite o controle de moradores, solicitação de manutenção, agendamento de consultas e de computadores, registros de solicittações e facilita a comunicação entre administração e residentes.
 
-## Get started
+Neste repositório, você encontrará a versão final do Front-End, desenvolvido por mim em `React Native`.
 
-1. Install dependencies
+## 📌 Objetivo
 
-   ```bash
-   npm install
-   ```
+Oferecer uma solução digital que otimize os processos da moradia estudantil, promovendo transparência, organização e praticidade para administradores e estudantes.
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🛠️ Funcionalidades
 
-In the output, you'll find options to open the app in a
+- ✅ Cadastro e Controle de Estudantes
+- ✅ Solicitação de Consultas Psicológicas
+- ✅ Solicitação de Manutenções
+- ✅ Agendamento de Computadores
+- ✅ Registro de Manutenções e Solicitações 
+- ✅ Envio de Documentação
+- ✅ Painel de Avisos e Comunicados
+- ✅ Diferentes Níveis de Acesso (Administrador e Estudante)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🖥️ Tecnologias Utilizadas no App Completo
 
-## Get a fresh project
+> Substitua pelas tecnologias reais do seu projeto.
 
-When you're ready, run:
+- `React Native`
+- `Postgresql`
+- `Python` API
 
-```bash
-npm run reset-project
-```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 👥 Perfis de Acesso
+*Administrador*
 
-## Learn more
+* Acesso completo ao sistema
+* Cadastro/remoção de estudantes
+* Gerenciamento de quartos e ocorrências
 
-To learn more about developing your project with Expo, look at the following resources:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+*Estudante*
+* Visualização de informações pessoais
+* Envio de solicitações e ocorrências
+* Acesso aos avisos
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 💼 Equipe Desenvolvedora
+* **Iasmin Torres**: Desenvolvedora Front-End
+* **Daniel Rodrigues**: UI/UX e Full-Stack
+* **André Leite**: Back-end
+* **Lavínia Charrua**: Back-end
+* **Leonardo Soares**: Back-end
+* **Kaique Vieira**: DevSecOps
+* **Thais Rosa**: Engenheira de Requisitos
